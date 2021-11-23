@@ -1,0 +1,16 @@
+<div class="nav">
+    <ul>
+        <li *ngFor="let link of listeLien;">
+            <a routerLink="{{link.url}}" (click)="toggle(link)">
+                {{link.title}}
+            </a>
+            <ul *ngIf="link.isVisible">
+                <li *ngFor="let childs of link.children;">
+                    <a routerLink="{{childs.url}}">
+                        -  {{childs.title}}
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
