@@ -1,0 +1,62 @@
+<script src="... /angular-countries/dist/js/ngCountries.js"></script>
+<body>
+    <div id="inscription">
+        <h1>{{title}}</h1>
+        <div class="popup" *ngIf="message.length > 0">
+            <div class="content">
+                <p>{{message}}</p>
+            </div>
+            <button (click)="popup = false; redirectToHome()">Fermer</button>
+        </div>
+        <form [formGroup]="inscriptionForm" *ngIf="message.length === 0">
+            <div appearance="outline">
+                <label>Nom</label>
+                <input matInput formControlName="Nom" id="Nom">
+                <control-messages [control]="inscriptionForm.get('Nom')"></control-messages>
+            </div>
+            <br>
+            <div appearance="outline">
+                <label>Prénom</label>
+                <input matInput formControlName="Prenom" id="Prenom">
+                <control-messages [control]="inscriptionForm.get('Prenom')"></control-messages>
+            </div>
+            <br>
+            <div appearance="outline">
+                <label>Email</label>
+                <input matInput formControlName="Email" id="Email" placeholder="Ex. myemail@example.com">
+                <control-messages [control]="inscriptionForm.get('Email')"></control-messages>
+            </div>
+            <br>
+            <div appearance="outline">
+                <label>Pays</label>
+                <select formControlName="Pays" class="form-control" name="Pays" id="Pays">
+                    <option value="" disabled selected>Pays</option>
+                    <option *ngFor="let country of countryList" [value]="country.name">{{country.name}}</option>
+               </select>
+               
+                <control-messages [control]="inscriptionForm.get('Pays')"></control-messages>
+            </div>
+            <br>
+            <div appearance="outline">
+                <label>Téléphone</label>
+                <input matInput formControlName="Telephone" id="Telephone" placeholder="Ex. 0497318436">
+                <control-messages [control]="inscriptionForm.get('Telephone')"></control-messages>
+            </div>
+            <br>
+            <div appearance="outline">
+                <label>Mot de passe</label>
+                <input matInput type="Password" formControlName="Password" id="Password">
+                <control-messages [control]="inscriptionForm.get('Password')"></control-messages>
+            </div>
+            <br>
+            <!-- <mat-slide-toggle color="primary">Afficher le mot de passe</mat-slide-toggle>
+            <br> -->
+            <button mat-button type="submit" color="warn" [disabled]="!inscriptionForm.valid" (click)="registerAccount(inscriptionForm)">S'INSCRIRE</button>
+            <br>
+            <br>
+            <br>
+            <P>Vous avez déjà un compte ?</P>
+            <button mat-button color="primary" [routerLink]="'/connection'">CONNECTEZ VOUS</button>
+        </form>
+    </div>
+</body>

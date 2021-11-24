@@ -17,7 +17,8 @@ export class NavComponent implements OnInit {
   
   ngOnInit(): void {
     this.listeLien = [
-      {url: '/home', title : 'Home'},
+      {url: '/', title : 'Accueil'},
+      {url: '/register', title : 'Register'},
       /*{title : 'Exos', children : [
         {url: '/exercice/chrono', title : 'Chrono'},
         {url: '/exercice/courses', title : 'Liste de Courses'},

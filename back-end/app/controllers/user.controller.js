@@ -30,7 +30,7 @@ exports.create = (req, res) => {
       });
   };
 
-exports.findAll = (req, res) => {
+  exports.findAll = (req, res) => {
     const title = req.query.title;
     var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
   
@@ -46,19 +46,19 @@ exports.findAll = (req, res) => {
       });
   };
 
-exports.findOne = (req, res) => {
+  exports.findOne = (req, res) => {
     const id = req.params.id;
   
-    User.findById(id)
+    User.findOne({Email: id})
       .then(data => {
         if (!data)
-          res.status(404).send({ message: "Not found User with id " + id });
+          res.status(404).send({ message: "Not found User with email " + id });
         else res.send(data);
       })
       .catch(err => {
         res
           .status(500)
-          .send({ message: "Error retrieving User with id=" + id });
+          .send({ message: "Error retrieving User with email=" + id });
       });
   };
 

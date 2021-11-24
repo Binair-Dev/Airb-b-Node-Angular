@@ -12,7 +12,7 @@ module.exports = mongoose => {
         versionKey: false,
         collection: "users",
     });
-  
+    
     const User = mongoose.model("user", schema);
     return User;
   };
