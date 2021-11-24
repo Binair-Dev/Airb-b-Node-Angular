@@ -18,6 +18,9 @@ module.exports = mongoose => {
         MachineALaver: Boolean,
         Internet: Boolean,
         AnimauxAdmis: Boolean,
+        Prix: Number,
+        proprioId: String,
+        Assurance: Boolean,
       },{
         versionKey: false,
         collection: "properties",

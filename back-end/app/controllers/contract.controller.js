@@ -9,9 +9,11 @@ exports.create = (req, res) => {
   
     const contract = new Contract({
       propertyId: req.body.propertyId,
-      userId: req.body.userId,
+      locataireId: req.body.locataireId,
+      proprioId: req.body.proprioId,
       startDate: new Date(req.body.startDate),
       endDate: new  Date(req.body.endDate),
+      Assurance: req.body.Assurance,
     });
   
     contract

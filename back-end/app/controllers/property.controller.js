@@ -25,6 +25,9 @@ exports.create = (req, res) => {
       MachineALaver: req.body.MachineALaver,
       Internet: req.body.Internet,
       AnimauxAdmis: req.body.AnimauxAdmis,
+      Prix: req.body.Prix,
+      proprioId: req.body.proprioId,
+      Assurance: req.body.Assurance,
     });
   
     property
