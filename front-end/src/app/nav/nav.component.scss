@@ -1,0 +1,26 @@
+
+li {
+    display:block;
+    display:inline-block;
+    margin-left: 5px;
+}
+
+ul {
+    padding-inline-start: 0px;
+}
+
+a {
+    display: inline-block;
+    width: 130px;
+    padding: 10px;
+    border: 1px solid black;
+    text-decoration: none;
+    font-size: 30px;
+}
+.nav {
+    text-align: center;
+}
+
+li:first-child {
+    margin-left: 0px;
+}

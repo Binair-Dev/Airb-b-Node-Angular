@@ -1,0 +1,27 @@
+.container {
+    text-align: center;
+    padding-top: 15px;
+    padding-left: 15px;
+    &__text {
+      margin-left: 25px;
+      display: inline-block;
+      text-align: left;
+    }
+}
+
+button {
+    margin-right: 5px;
+}
+
+.centered {
+    text-align: center;
+    &__text {
+        margin-left: 25px;
+        display: inline-block;
+        text-align: center;
+      }
+}
+
+h2 {
+    text-decoration: underline;
+}

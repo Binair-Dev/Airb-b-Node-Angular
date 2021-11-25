@@ -5,7 +5,7 @@
                 {{link.title}}
             </a>
             <ul *ngIf="link.isVisible">
-                <li *ngFor="let childs of link.children;">
+                <li *ngFor="let childs of link.children;" >
                     <a routerLink="{{childs.url}}">
                         -  {{childs.title}}
                     </a>

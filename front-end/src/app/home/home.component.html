@@ -1,1 +1,2 @@
-<h2>BIENVENUE SUR LA PAGE D'ACCUEIL</h2>
+<h2 *ngIf="prenom.length > 0 && nom.length > 0">{{welcomer}} {{prenom}} {{nom}}</h2>
+<h2 *ngIf="prenom.length === 0 && nom.length === 0">{{welcomer}}</h2>

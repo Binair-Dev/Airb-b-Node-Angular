@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { countries } from '../_data/country-data-store';
 import { AuthService } from '../_services/auth.service';
 import { ValidationService } from '../_services/validation.service';
+import { sha256 } from '../_tools/password-hash';
 
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.sass']
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
   title: String = "INSCRIVEZ VOUS";
@@ -48,6 +49,7 @@ export class RegisterComponent implements OnInit {
         if (res === false) {
           this.authService.register(form.value).toPromise().then().finally(() => {
             this.message = "Inscription réussie !"
+            this.redirectToHome();
           });
         }
         else {
@@ -60,11 +62,4 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-}
-async function sha256(message) {
-  const msgBuffer = new TextEncoder().encode(message);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-  return hashHex;
 }

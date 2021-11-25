@@ -1,0 +1,26 @@
+<div id="inscription">
+    <h1>{{title}}</h1>
+    <div class="popup" *ngIf="message.length > 0">
+        <div class="content">
+            <p>{{message}}</p>
+        </div>
+        <button (click)="popup = false; redirectToHome()">Fermer</button>
+    </div>
+    <form [formGroup]="loginForm" *ngIf="message.length === 0">
+        <p appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="Email" id="Email" placeholder="Ex. myemail@example.com">
+            <control-messages [control]="loginForm.get('Email')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput type="Password" formControlName="Password" id="Password">
+            <control-messages [control]="loginForm.get('Password')"></control-messages>
+        </p>
+        <br>
+        <!-- <mat-slide-toggle color="primary">Afficher le mot de passe</mat-slide-toggle>
+        <br> -->
+        <button mat-button type="submit" color="warn" [disabled]="!loginForm.valid" (click)="loginAccount(loginForm)">SE CONNECTER</button>
+    </form>
+</div>

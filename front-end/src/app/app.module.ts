@@ -11,6 +11,9 @@ import { RegisterComponent } from './register/register.component';
 import { ControlMessageComponent } from './_control/control-message/control-message.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { AdministrationComponent } from './administration/administration.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     RegisterComponent,
     ControlMessageComponent,
+    LoginComponent,
+    LogoutComponent,
+    AdministrationComponent,
   ],
   imports: [
     BrowserModule,

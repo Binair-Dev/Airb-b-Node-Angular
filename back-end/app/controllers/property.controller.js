@@ -28,6 +28,7 @@ exports.create = (req, res) => {
       Prix: req.body.Prix,
       proprioId: req.body.proprioId,
       Assurance: req.body.Assurance,
+      Attente: req.body.Attente
     });
   
     property
