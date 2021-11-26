@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthGuard } from './_services/auth-guard.service';
+import { AuthGuard } from './_guards/auth-guard.service';
 
 const routes: Routes = [
   {path : '', component : HomeComponent},

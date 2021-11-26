@@ -104,7 +104,7 @@ exports.update = (req, res) => {
             Telephone: user.Telephone,
             Password: user.Password,
             isAdmin: user.isAdmin,
-            Token: jwt.sign({Email: user.Email, isAdmin: user.isAdmin}, process.env.ACCESS_TOKEN_SECRET)
+            Token: jwt.sign({Email: user.Email, isAdmin: user.isAdmin}, generate_token(64))
           }).then(data => {
             res.status(200).send(data)
           });
@@ -153,3 +153,13 @@ exports.deleteAll = (req, res) => {
         });
       });
   };
+  
+function generate_token(length){
+  var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
+  var b = [];  
+  for (var i=0; i<length; i++) {
+      var j = (Math.random() * (a.length-1)).toFixed(0);
+      b[i] = a[j];
+  }
+  return b.join("");
+}
