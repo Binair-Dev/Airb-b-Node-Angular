@@ -7,7 +7,8 @@ module.exports = mongoose => {
         Pays: String,
         Telephone: String,
         Password: String,
-        isAdmin: Boolean
+        isAdmin: Boolean,
+        Token: String
       },{
         versionKey: false,
         collection: "users",

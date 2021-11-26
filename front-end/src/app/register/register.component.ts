@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   message: String = "";
   countryList = countries;
   inscriptionForm: FormGroup;
+  isFirst = false;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.inscriptionForm = this.formBuilder.group({
@@ -30,7 +31,11 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.authService.getAll().toPromise().then(data => {
+      if(data.length === 0) {
+        this.isFirst = true;
+      }
+    })
   }
   redirectToHome(){
     this.router.navigateByUrl("");
@@ -38,7 +43,8 @@ export class RegisterComponent implements OnInit {
 
   async registerAccount(form) {
     let res = false;
-    form.value.isAdmin = false;
+    if(this.isFirst) form.value.isAdmin = true;
+    else form.value.isAdmin = false;
     form.value.Password = await sha256(form.value.Password);
     this.authService.getByEmail(form.value.Email).toPromise().then(resp => {
       if (resp.Email === form.value.Email) {

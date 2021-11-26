@@ -1,5 +1,7 @@
+require('dotenv').config()
 const db = require("../models");
 const User = db.user;
+const jwt = require('jsonwebtoken')
 
 exports.create = (req, res) => {
     if (!req.body) {
@@ -15,8 +17,12 @@ exports.create = (req, res) => {
       Telephone: req.body.Telephone,
       Password: req.body.Password,
       isAdmin: req.body.isAdmin,
+      Token: ""
     });
   
+    const token = jwt.sign({Email: user.Email, isAdmin: user.isAdmin}, process.env.ACCESS_TOKEN_SECRET);
+    user.Token = token;
+
     user
       .save(user)
       .then(data => {
@@ -71,13 +77,38 @@ exports.update = (req, res) => {
   
     const id = req.params.id;
   
-    User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    const user = new User({
+      Prenom: req.body.Prenom,
+      Nom: req.body.Nom,
+      Email: req.body.Email,
+      Pays: req.body.Pays,
+      Telephone: req.body.Telephone,
+      Password: req.body.Password,
+      isAdmin: req.body.isAdmin,
+      Token: req.body.Token
+    });
+
+    User.find({Email: id})
       .then(data => {
-        if (!data) {
+        data.forEach(element => {
+        if (!element) {
           res.status(404).send({
             message: `Cannot update User with id=${id}. Maybe User was not found!`
           });
-        } else res.send({ message: "User was updated successfully." });
+        } else{
+          element.updateOne({
+            Nom: user.Nom, 
+            Prenom: user.Prenom, 
+            Email: user.Email,
+            Pays: user.Pays,
+            Telephone: user.Telephone,
+            Password: user.Password,
+            isAdmin: user.isAdmin,
+            Token: jwt.sign({Email: user.Email, isAdmin: user.isAdmin}, process.env.ACCESS_TOKEN_SECRET)
+          }).then(data => {
+            res.status(200).send(data)
+          });
+        }});
       })
       .catch(err => {
         res.status(500).send({
@@ -93,7 +124,7 @@ exports.delete = (req, res) => {
       .then(data => {
         if (!data) {
           res.status(404).send({
-            message: `Cannot delete User with id=${id}. Maybe User was not found!`
+            message: `Cannot delete User with id=${id}. Maybe Property was not found!`
           });
         } else {
           res.send({

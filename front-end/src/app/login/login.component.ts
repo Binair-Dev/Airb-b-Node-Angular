@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 import { ValidationService } from '../_services/validation.service';
+import { sha256 } from '../_tools/password-hash';
 
 @Component({
   selector: 'app-login',
@@ -30,14 +31,15 @@ export class LoginComponent implements OnInit {
   }
 
   async loginAccount(form) {
-    await this.authService.login(form);
-    this.authService.isLogged.subscribe(() => {
-      if(this.authService.getUser() !== null) {
-        this.message = "Connexion réussie !"; 
-      }
-      else {
-        this.message = "Erreur, Email ou Mot de passe incorrect !"
-      }
+    form.value.Password = await sha256(form.value.Password);
+    this.authService.login(form.value).toPromise().then(data => {
+      console.log(data);
+      
+      this.authService.setUser(JSON.stringify(data))
+      this.authService.isLogged.next(true);
+      this.message = "Connexion réussie !";
+    }).catch(err => {
+      this.message = "Connexion échouée !"
     })
   }
 }

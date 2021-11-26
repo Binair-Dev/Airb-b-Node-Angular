@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Property } from '../_models/property';
+import { User } from '../_models/user';
+import { AuthService } from '../_services/auth.service';
 import { PropertyService } from '../_services/property.service';
 
 @Component({
@@ -8,36 +11,66 @@ import { PropertyService } from '../_services/property.service';
   styleUrls: ['./administration.component.scss']
 })
 export class AdministrationComponent implements OnInit {
-
+  currentUser: User = null;
+  type: Number = 0;
   selected: Property = null;
   properties: Property[] = [];
-  constructor(private propertyService: PropertyService) { }
+  members: User[] = [];
+  constructor(private propertyService: PropertyService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.propertyService.getAll().then(data => {
       data.forEach(element => {
         if(element.Attente === true) this.properties.push(element)
       });
-    });    
+    });  
+
+    this.authService.getAll().toPromise().then(data => {
+      data.forEach(element => {
+        this.members.push(element)
+      });
+    });  
+
+    this.currentUser = JSON.parse(this.authService.getUser());
   }
 
-  validate(id: any) {
+ validate(id: any) {
     let prop = this.properties[id];
     prop.Attente = false;
     this.propertyService.validateProperty(prop);
     window.location.reload();
   }
-  del(id: any) {
+ del(id: any) {
     let prop = this.properties[id];
     prop.Attente = false;
     this.propertyService.deleteProperty(prop);
     window.location.reload();
   }
-  profile(id: any) {
+ profile(id: any) {
     this.selected = this.properties[id];
   }
 
-  reset() {
-    this.selected = null;
+ reset() {
+    this.selected = null; 
   }
+
+ delUser(user: any) {
+   this.authService.deleteUser(user._id).toPromise().then(data => {
+     window.location.reload();
+   })
+ }
+ switchAdmin(user:any) {
+   this.authService.updateUser(user.Email, {
+     Nom: user.Nom,
+     Prenom: user.Prenom,
+     Email: user.Email,
+     Pays: user.Pays,
+     Telephone: user.Telephone,
+     Password: user.Password,
+     isAdmin: !user.isAdmin,
+     Token: user.Token
+    }).toPromise().then(data => {
+    window.location.reload();
+   })
+ }
 }

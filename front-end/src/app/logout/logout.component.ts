@@ -11,13 +11,9 @@ export class LogoutComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  redirectToHome(){
-    this.router.navigateByUrl("");
-  }
-
   ngOnInit(): void {
     this.authService.logout();
-    this.redirectToHome();
-    setTimeout(function(){ window.location.reload(); }, 100);
+    this.router.navigateByUrl("");
+    setTimeout(function() {window.location.reload();}, 50)
   }
 }

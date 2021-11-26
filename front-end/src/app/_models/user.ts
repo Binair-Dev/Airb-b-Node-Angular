@@ -6,5 +6,6 @@ export interface User {
     Pays: String
     Prenom: String
     Telephone: String
-    isAdmin: Boolean
+    isAdmin: Boolean,
+    Token: String
 }

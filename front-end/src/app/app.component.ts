@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { AuthService } from './_services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +10,9 @@ import {Component} from '@angular/core';
 export class AppComponent {
   title = 'front-end';
 
-  constructor(){}
+  constructor(){
+
+  }
 
   ngOnInit(): void {
     
