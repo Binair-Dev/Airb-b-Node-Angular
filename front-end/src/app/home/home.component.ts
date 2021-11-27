@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-home',
@@ -9,15 +10,12 @@ import { AuthService } from '../_services/auth.service';
 export class HomeComponent implements OnInit {
 
   welcomer = "Bienvenue sur AirB&B";
-  nom = "";
-  prenom = "";
+  currentUser: User = null;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     if(this.authService.getUser() !== null) {
-      this.prenom = JSON.parse(this.authService.getUser()).Prenom;
-      this.nom = JSON.parse(this.authService.getUser()).Nom;
+      this.currentUser = this.authService.getUser();
     }
   }
-
 }

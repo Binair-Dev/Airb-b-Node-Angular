@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-
+const db = require("./app/models");
+const { authenticateToken } = require("./app/_tool/authentificator");
 const app = express();
 
 var corsOptions = {
@@ -16,7 +17,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //BDD
-const db = require("./app/models");
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,

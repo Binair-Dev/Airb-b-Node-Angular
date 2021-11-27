@@ -1,2 +1,3 @@
-<h2 *ngIf="prenom.length > 0 && nom.length > 0">{{welcomer}} {{prenom}} {{nom}}</h2>
-<h2 *ngIf="prenom.length === 0 && nom.length === 0">{{welcomer}}</h2>
+<h2 *ngIf="currentUser !== null">{{welcomer}} {{currentUser.Prenom}} {{currentUser.Nom}}</h2>
+<h2 *ngIf="currentUser === null">{{welcomer}}</h2>
+<br>
