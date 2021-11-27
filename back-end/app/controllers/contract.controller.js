@@ -30,6 +30,10 @@ exports.create = (req, res) => {
   };
 
 exports.findAll = (req, res) => {
+  if(!req.user.isAdmin) {
+    res.status(401).send("Unauthorized")
+    return;
+  }
     const title = req.query.title;
     var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
   
@@ -46,6 +50,10 @@ exports.findAll = (req, res) => {
   };
 
 exports.findOne = (req, res) => {
+  if(!req.user.isAdmin) {
+    res.status(401).send("Unauthorized")
+    return;
+  }
     const id = req.params.id;
   
     Contract.findById(id)
@@ -62,6 +70,10 @@ exports.findOne = (req, res) => {
   };
 
 exports.update = (req, res) => {
+  if(!req.user.isAdmin) {
+    res.status(401).send("Unauthorized")
+    return;
+  }
     if (!req.body) {
       return res.status(400).send({
         message: "Data to update can not be empty!"
@@ -86,6 +98,10 @@ exports.update = (req, res) => {
   };
 
 exports.delete = (req, res) => {
+  if(!req.user.isAdmin) {
+    res.status(401).send("Unauthorized")
+    return;
+  }
     const id = req.params.id;
   
     Contract.findByIdAndRemove(id)
@@ -108,6 +124,10 @@ exports.delete = (req, res) => {
   };
 
 exports.deleteAll = (req, res) => {
+  if(!req.user.isAdmin) {
+    res.status(401).send("Unauthorized")
+    return;
+  }
   Contract.deleteMany({})
       .then(data => {
         res.send({

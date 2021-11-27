@@ -1,14 +1,18 @@
+const { authenticateToken } = require("../_tool/authentificator.js");
+
 module.exports = app => {
     const user = require("../controllers/user.controller.js");
   
-    var router = require("express").Router();
+    var unsecured = require("express").Router();
+    var secured = require("express").Router();
   
-    router.post("/", user.create);
-    router.get("/", user.findAll);
-    router.get("/:id", user.findOne);
-    router.put("/:id", user.update);
-    router.delete("/:id", user.delete);
-    router.delete("/", user.deleteAll);
+    unsecured.post("/", user.create);
+    secured.get("/", user.findAll);
+    secured.get("/:id", user.findOne);
+    secured.put("/:id", user.update);
+    secured.delete("/:id", user.delete);
+    secured.delete("/", user.deleteAll);
   
-    app.use('/api/user', router);
+    app.use('/api/user', unsecured);
+    app.use('/api/user', authenticateToken, secured);
   };

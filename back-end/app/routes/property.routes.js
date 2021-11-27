@@ -1,3 +1,4 @@
+const { authenticateToken } = require("../_tool/authentificator.js");
 module.exports = app => {
     const property = require("../controllers/property.controller.js");
   
@@ -10,5 +11,5 @@ module.exports = app => {
     router.delete("/:id", property.delete);
     router.delete("/", property.deleteAll);
   
-    app.use('/api/property', router);
+    app.use('/api/property', authenticateToken, router);
   };

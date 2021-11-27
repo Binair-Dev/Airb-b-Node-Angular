@@ -33,11 +33,13 @@ export class LoginComponent implements OnInit {
   async loginAccount(form) {
     form.value.Password = await sha256(form.value.Password);
     this.authService.login(form.value).toPromise().then(data => {
-      this.authService.setUser(JSON.stringify(data))
-      this.authService.isLogged.next(true);
-      this.message = "Connexion réussie !";
+      if(data) {
+        this.authService.setToken(JSON.stringify(data))
+        this.authService.isLogged.next(true);
+        this.message = "Connexion réussie !";
+    }
     }).catch(err => {
-      this.message = "Connexion échouée !"
+      if(err) this.message = "Connexion échouée !"
     })
   }
 }

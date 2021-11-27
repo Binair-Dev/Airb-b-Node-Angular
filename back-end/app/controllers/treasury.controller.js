@@ -2,6 +2,10 @@ const db = require("../models");
 const Treasury = db.treasury;
 
 exports.findAll = (req, res) => {
+  if(!req.user.isAdmin) {
+    res.status(401).send("Unauthorized")
+    return;
+  }
     const title = req.query.title;
     var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
   
@@ -18,6 +22,10 @@ exports.findAll = (req, res) => {
   };
 
 exports.update = (req, res) => {
+  if(!req.user.isAdmin) {
+    res.status(401).send("Unauthorized")
+    return;
+  }
     if (!req.body) {
       return res.status(400).send({
         message: "Data to update can not be empty!"

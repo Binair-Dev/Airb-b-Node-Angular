@@ -1,3 +1,4 @@
+const { authenticateToken } = require("../_tool/authentificator.js");
 module.exports = app => {
     const contract = require("../controllers/contract.controller.js");
   
@@ -10,5 +11,5 @@ module.exports = app => {
     router.delete("/:id", contract.delete);
     router.delete("/", contract.deleteAll);
   
-    app.use('/api/contract', router);
+    app.use('/api/contract', authenticateToken, router);
   };

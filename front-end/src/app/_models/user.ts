@@ -1,11 +1,9 @@
 export interface User {
-    _id: String
-    Email: String
     Nom: String
-    Password: String
-    Pays: String
     Prenom: String
+    Email: String
+    Pays: String
     Telephone: String
-    isAdmin: Boolean,
-    Token: String
+    Password: String
+    isAdmin: Boolean
 }

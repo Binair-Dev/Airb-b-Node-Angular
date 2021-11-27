@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
+import decode from 'jwt-decode';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-nav',
@@ -7,7 +9,6 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-
   listeLien:Link[];
   constructor(private authService: AuthService) { }
 
@@ -16,7 +17,7 @@ export class NavComponent implements OnInit {
     link.isVisible = !link.isVisible;
   }
   
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.listeLien = [
       {url: '/', title : 'Accueil'},
       /*{title : 'Exos', children : [
@@ -27,14 +28,14 @@ export class NavComponent implements OnInit {
         {url: '/exercice/fanlist', title : 'Liste des Fans'},
       ]},/**/
     ];
-    if(this.authService.getUser() === null){
+    if(this.authService.getToken() === null){
       this.listeLien.push({url: '/register', title : 'Register'});
       this.listeLien.push({url: '/login', title : 'Login'});
-      
     }
     else {
+      let user = this.authService.getUser();
       this.listeLien.push({url: '/logout', title : 'Logout'});
-      if(JSON.parse(this.authService.getUser()).isAdmin === true) {
+      if(user.isAdmin === true) {
         this.listeLien.push({url: '/admin', title : 'Admin'});
       }
     }
@@ -48,3 +49,4 @@ export class Link
   children?: Link[];
   isVisible?: boolean = false;
 }
+

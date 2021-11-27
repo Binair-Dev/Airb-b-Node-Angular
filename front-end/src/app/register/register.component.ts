@@ -31,41 +31,19 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.getAll().toPromise().then(data => {
-      if(data.length === 0) {
-        this.isFirst = true;
-      }
-    })
+    
   }
+
   redirectToHome(){
-    this.router.navigateByUrl("");
+    this.router.navigateByUrl("login");
   }
 
   async registerAccount(form) {
-    let res = false;
-    if(this.isFirst) form.value.isAdmin = true;
-    else form.value.isAdmin = false;
     form.value.Password = await sha256(form.value.Password);
-    this.authService.getByEmail(form.value.Email).toPromise().then(resp => {
-      if (resp.Email === form.value.Email) {
-        res = true;
-      }
-    }).finally(() => {
-      try {
-        if (res === false) {
-          this.authService.register(form.value).toPromise().then().finally(() => {
-            this.message = "Inscription réussie !"
-            this.redirectToHome();
-          });
-        }
-        else {
-          this.title = "Erreur d'inscription"
-          this.message = "Erreur, un utilisateur ayant cette adresse email existe déjà !"
-        }
-      } catch (error) {
-        console.log("Erreur: " + error);
-      }
+    this.authService.register(form.value).toPromise().then(data => {
+        if(data) this.message = "Vous avez bien été enregistré !";
+    }).catch(error => {
+        if(error) this.message = "Erreur lors de votre enregistrement.. Veuillez réessayer !";
     });
   }
-
 }

@@ -1,9 +1,15 @@
-<div class="centered">
+<div class="popup, centered" *ngIf="message.length > 0">
+    <div class="content">
+        <p>{{message}}</p>
+    </div>
+    <button (click)="popup = false; authError()">Fermer</button>
+</div>
+<div class="centered" *ngIf="message.length == 0">
     <button (click)="type = 1" >Voir les membres</button>
     <button (click)="type = 0">Voir les propriétés</button>
 </div>
 <!-- Propriétés -->
-<div *ngIf="type === 0">
+<div *ngIf="type === 0 && message.length == 0">
     <div *ngIf="selected === null">
         <p style="text-align: center; font-size: 16px; color: red;">Voici la liste des propriété(s) en attente !</p>
         <hr>
@@ -61,7 +67,7 @@
 </div>
 
 <!-- Membres -->
-<div *ngIf="type === 1">
+<div *ngIf="type === 1 && message.length == 0">
     <div *ngIf="selected === null">
         <p style="text-align: center; font-size: 16px; color: red;">Voici la liste des membre(s) !</p>
         <hr>
@@ -69,9 +75,9 @@
         <div *ngFor="let prop of members;" class="container">
             <div class="centered">
                 <p>{{prop.Nom}} {{prop.Prenom}}</p>
-                <button *ngIf="prop.isAdmin && (currentUser.Nom !== prop.Nom)" (click)="switchAdmin(prop)">Révoquer Administrateur</button>
+                <button *ngIf="prop.isAdmin && (prop.Email !== 'van.bellinghen.brian@gmail.com')" (click)="switchAdmin(prop)">Révoquer Administrateur</button>
                 <button *ngIf="!prop.isAdmin" (click)="switchAdmin(prop)" >Passer Administrateur</button>
-                <button *ngIf="currentUser.Nom !== prop.Nom" (click)="delUser(prop)">Supprimer</button>
+                <button *ngIf="prop.Nom !== 'Van Bellinghen'" (click)="delUser(prop)">Supprimer</button>
                 <hr>
             </div>
         </div>

@@ -1,7 +1,7 @@
 require('dotenv').config()
 const db = require("../models");
+const { authenticateToken } = require('../_tool/authentificator');
 const User = db.user;
-const jwt = require('jsonwebtoken')
 
 exports.create = (req, res) => {
     if (!req.body) {
@@ -16,13 +16,9 @@ exports.create = (req, res) => {
       Pays: req.body.Pays,
       Telephone: req.body.Telephone,
       Password: req.body.Password,
-      isAdmin: req.body.isAdmin,
-      Token: ""
+      isAdmin: req.body.isAdmin
     });
   
-    const token = jwt.sign({Email: user.Email, isAdmin: user.isAdmin}, process.env.ACCESS_TOKEN_SECRET);
-    user.Token = token;
-
     user
       .save(user)
       .then(data => {
@@ -37,6 +33,10 @@ exports.create = (req, res) => {
   };
 
   exports.findAll = (req, res) => {
+    if(!req.user.isAdmin) {
+      res.status(401).send("Unauthorized")
+      return;
+    }
     const title = req.query.title;
     var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
   
@@ -53,6 +53,10 @@ exports.create = (req, res) => {
   };
 
   exports.findOne = (req, res) => {
+    if(!req.user.isAdmin) {
+      res.status(401).send("Unauthorized")
+      return;
+    }
     const id = req.params.id;
   
     User.findOne({Email: id})
@@ -69,6 +73,10 @@ exports.create = (req, res) => {
   };
 
 exports.update = (req, res) => {
+  if(!req.user.isAdmin) {
+    res.status(401).send("Unauthorized")
+    return;
+  }
     if (!req.body) {
       return res.status(400).send({
         message: "Data to update can not be empty!"
@@ -84,8 +92,7 @@ exports.update = (req, res) => {
       Pays: req.body.Pays,
       Telephone: req.body.Telephone,
       Password: req.body.Password,
-      isAdmin: req.body.isAdmin,
-      Token: req.body.Token
+      isAdmin: req.body.isAdmin
     });
 
     User.find({Email: id})
@@ -103,8 +110,7 @@ exports.update = (req, res) => {
             Pays: user.Pays,
             Telephone: user.Telephone,
             Password: user.Password,
-            isAdmin: user.isAdmin,
-            Token: jwt.sign({Email: user.Email, isAdmin: user.isAdmin}, generate_token(64))
+            isAdmin: user.isAdmin
           }).then(data => {
             res.status(200).send(data)
           });
@@ -118,6 +124,10 @@ exports.update = (req, res) => {
   };
 
 exports.delete = (req, res) => {
+  if(!req.user.isAdmin) {
+    res.status(401).send("Unauthorized")
+    return;
+  }
     const id = req.params.id;
   
     User.findByIdAndRemove(id)
@@ -140,6 +150,10 @@ exports.delete = (req, res) => {
   };
 
 exports.deleteAll = (req, res) => {
+  if(!req.user.isAdmin) {
+    res.status(401).send("Unauthorized")
+    return;
+  }
     User.deleteMany({})
       .then(data => {
         res.send({
@@ -153,13 +167,3 @@ exports.deleteAll = (req, res) => {
         });
       });
   };
-  
-function generate_token(length){
-  var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
-  var b = [];  
-  for (var i=0; i<length; i++) {
-      var j = (Math.random() * (a.length-1)).toFixed(0);
-      b[i] = a[j];
-  }
-  return b.join("");
-}

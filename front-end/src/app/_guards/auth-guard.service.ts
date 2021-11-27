@@ -20,31 +20,26 @@ export class AuthGuard implements CanActivate{
   }
 
   canAccess(route: ActivatedRouteSnapshot, url: any): any {
-    if (this.authService.isLogged) {
-      let user = JSON.parse(this.authService.getUser());
+    // if (this.authService.isLogged) {
+    //   let user = JSON.parse(this.authService.getUser());
 
-      let resp = this.authService.getByEmail(user.Email).toPromise().then(data => {
-        let isAdmin = user.isAdmin;
-        let isDecodedAdmin = JSON.parse(JSON.stringify(decode(user.Token))).isAdmin;
+    //   let resp = this.authService.getByEmail(user.Email).toPromise().then(data => {
+    //     let isAdmin = user.isAdmin;
+    //     let isDecodedAdmin = JSON.parse(JSON.stringify(decode(user.Token))).isAdmin;
 
-        if(data.Token !== user.Token) {
-          this.router.navigateByUrl('logout');
-          return false;
-        }
-        else {
-          if (isDecodedAdmin !== isAdmin) {
-            this.router.navigateByUrl('logout');
-            return false;
-          }
-          if(user.isAdmin !== data.isAdmin && user.Token === data.Token) {
-            this.router.navigateByUrl('logout');
-            return false;
-          }
-          return true;
-        }
-      });
-      return resp;
-    }
-    return false;
+    //     if (isDecodedAdmin !== isAdmin) {
+    //       this.router.navigateByUrl('logout');
+    //       return false;
+    //     }
+    //     if(user.isAdmin !== data.isAdmin) {
+    //       this.router.navigateByUrl('logout');
+    //       return false;
+    //     }
+    //     return true;
+    //   });
+    //   return resp;
+    // }
+    // return false;
+    return true;
   }
 }

@@ -1,50 +1,37 @@
 const db = require("../models");
-const Login = db.login;
-
-const jwt = require('jsonwebtoken')
+const auth = require("../_tool/authentificator");
 const User = db.user;
 
 exports.login = async (req, res) => {
-  try {
-    const logged = new Login({
-      Email: req.body.Email,
-      Password: req.body.Password,
-    });
 
-    if (!(logged.Email && logged.Password)) {
-      res.status(400).send("All input is required");
+  User.findOne({Email: req.body.Email}).then((data) => {
+
+    let user = {
+      Nom: data.Nom,
+      Prenom: data.Prenom,
+      Email: data.Email,
+      Pays: data.Pays,
+      Telephone: data.Telephone,
+      Password: data.Password,
+      isAdmin: data.isAdmin
     }
-    const user = await User.find({ Email: logged.Email }).then(data => {
-      if (logged.Password === data[0].Password) {
-        let newToken = jwt.sign({Email: data[0].Email, isAdmin: data[0].isAdmin}, generate_token(64));
-        data[0].updateOne({
-            Token: newToken
-        }).then(d => {
-          data[0].Token = newToken;
-          res.status(200).send(data[0])
-        })
-      } else {
-        res.status(401).send(data[0])
+    
+    if(user !== null) {
+      if(req.body.Email !== user.Email) {
+        res.status(401).send('Invalid credentials')
+        return;
       }
-    });
-
-    if(!user) {
-      res.status(404)
+      if(req.body.Password !== user.Password) {
+        res.status(401).send('Invalid credentials')
+        return;
+      }
+      
+      console.log("test");
+      const accessToken = auth.generateToken(user);
+      res.status(200).send({accessToken});
     }
     else {
-      res.status(401).send({success: false});
+      res.status(404).send("Not found")
     }
-  } catch (err) {
-    console.log(err);
-  }
-};  
-
-function generate_token(length){
-  var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
-  var b = [];  
-  for (var i=0; i<length; i++) {
-      var j = (Math.random() * (a.length-1)).toFixed(0);
-      b[i] = a[j];
-  }
-  return b.join("");
+  })
 }

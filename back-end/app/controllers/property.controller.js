@@ -77,6 +77,10 @@ exports.findOne = (req, res) => {
   };
 
 exports.update = (req, res) => {
+  if(!req.user.isAdmin) {
+    res.status(401).send("Unauthorized")
+    return;
+  }
     if (!req.body) {
       return res.status(400).send({
         message: "Data to update can not be empty!"
@@ -100,6 +104,10 @@ exports.update = (req, res) => {
       });
   };
 exports.delete = (req, res) => {
+  if(!req.user.isAdmin) {
+    res.status(401).send("Unauthorized")
+    return;
+  }
     const id = req.params.id;
   
     Property.findByIdAndRemove(id)
@@ -122,6 +130,10 @@ exports.delete = (req, res) => {
   };
 
 exports.deleteAll = (req, res) => {
+  if(!req.user.isAdmin) {
+    res.status(401).send("Unauthorized")
+    return;
+  }
   Property.deleteMany({})
       .then(data => {
         res.send({

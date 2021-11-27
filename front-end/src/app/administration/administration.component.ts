@@ -11,7 +11,7 @@ import { PropertyService } from '../_services/property.service';
   styleUrls: ['./administration.component.scss']
 })
 export class AdministrationComponent implements OnInit {
-  currentUser: User = null;
+  message: String = "";
   type: Number = 0;
   selected: Property = null;
   properties: Property[] = [];
@@ -23,15 +23,17 @@ export class AdministrationComponent implements OnInit {
       data.forEach(element => {
         if(element.Attente === true) this.properties.push(element)
       });
+    }).catch(error => {
+      this.message = "Erreur d'authentification, veuillez vous reconnecter !";
     });  
 
     this.authService.getAll().toPromise().then(data => {
       data.forEach(element => {
         this.members.push(element)
       });
-    });  
-
-    this.currentUser = JSON.parse(this.authService.getUser());
+    }).catch(error => {
+      this.message = "Erreur d'authentification, veuillez vous reconnecter !";
+    }); ;  
   }
 
  validate(id: any) {
@@ -72,5 +74,9 @@ export class AdministrationComponent implements OnInit {
     }).toPromise().then(data => {
     window.location.reload();
    })
+ }
+
+ authError() {
+   this.router.navigateByUrl('logout');
  }
 }

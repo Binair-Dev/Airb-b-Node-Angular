@@ -1,3 +1,4 @@
+const { authenticateToken } = require("../_tool/authentificator.js");
 module.exports = app => {
     const treasury = require("../controllers/treasury.controller.js");
   
@@ -6,5 +7,5 @@ module.exports = app => {
     router.get("/", treasury.findAll);
     router.put("/:id", treasury.update);
   
-    app.use('/api/treasury', router);
+    app.use('/api/treasury', authenticateToken, router);
   };
