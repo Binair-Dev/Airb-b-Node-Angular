@@ -1,5 +1,13 @@
-<h1 style="text-align: center;" >{{title}}</h1>
-<div class="popup" *ngIf="message !== null">
+<h1 style="text-align: center; color: white;" >{{title}}</h1>
+<div style="text-align: center;" id="container" class="popup" *ngIf="lastconfirm !== null">
+    <div class="content">
+        <p style="text-decoration: underline;" >{{lastconfirm}}</p>
+        <p>Vous venez donc de réserver cette propriété pour une durée de: {{days}} jours !</p>
+        <p>Du: {{date1 | date: 'dd/MM/yyyy'}} à {{date2 | date: 'dd/MM/yyyy'}} pour un prix de: {{5 + (days * selected.Prix) + (days * 10)}}€</p>
+    </div>
+    <button (click)="popup = false; returnToHome()">Valider</button>
+</div>
+<div style="text-align: center;" id="container" class="popup" *ngIf="message !== null">
     <div class="content">
         <p style="text-decoration: underline;" >{{message}}</p>
         <p>Frais de dossier: 5€</p>
@@ -10,7 +18,7 @@
     </div>
     <button (click)="popup = false; validate()">Valider</button>
 </div>
-<div *ngIf="message === null && selected !== null">
+<div *ngIf="message === null && selected !== null && lastconfirm === null" id="container">
     <hr>
     <div class="centered">
         <img style="width: 600px; height: auto;" src="{{selected.PictureUrl}}">
@@ -39,12 +47,12 @@
             <form [formGroup]="rentForm">
                 <p appearance="outline">
                     <mat-label style="margin-right: 5px;" >Date de départ:</mat-label>
-                    <input matInput type="date" formControlName="Date1" id="Date1" placeholder="24/12/2021">
+                    <input matInput type="date" formControlName="Date1" id="Date1" min="{{this.today}}">
                     <control-messages [control]="rentForm.get('Date1')"></control-messages>
                 </p>
                 <p appearance="outline">
                     <mat-label style="margin-right: 5px;" >Date de fin:</mat-label>
-                    <input matInput type="date" formControlName="Date2" id="Date2" placeholder="25/12/2021">
+                    <input matInput type="date" formControlName="Date2" id="Date2"  min="{{this.tomorow}}">
                     <control-messages [control]="rentForm.get('Date2')"></control-messages>
                 </p>
                 <p appearance="outline">

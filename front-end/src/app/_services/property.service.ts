@@ -31,4 +31,8 @@ export class PropertyService {
   updateProperty(property: any) {
     return this.httpClient.put<Property>(this.AUTH_SERVER + "/api/property/" + property._id, property, {headers: {'Authorization':'Bearer ' + JSON.parse(this.authService.getToken()).accessToken}}).toPromise();
   }
+
+  registerContract(contract: any) {
+    return this.httpClient.post(this.AUTH_SERVER + "/api/contract", contract, {headers: {'Authorization':'Bearer ' + JSON.parse(this.authService.getToken()).accessToken}}).toPromise();
+  }
 }

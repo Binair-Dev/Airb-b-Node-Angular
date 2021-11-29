@@ -16,17 +16,31 @@ exports.create = (req, res) => {
       Assurance: req.body.Assurance,
     });
   
-    contract
-      .save(contract)
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the contract."
+    Contract.find().then(data => {
+      let status = 0;
+      if(data !== null) {
+        data.forEach(element => {
+          let first = dateCheck(element.startDate, element.endDate, contract.startDate);
+          let second = dateCheck(element.startDate, element.endDate, contract.endDate)
+          if(first === true || second === true) {
+            status = 405;
+          }
+          
         });
-      });
+        if(status > 0) {
+          res.status(status).send("Dates already reserved");
+          return;
+        }
+        contract.save().then(data => {
+          res.status(200).send(data);
+        });
+      }
+      else {
+        contract.save().then(data => {
+          res.status(200).send(data);
+        });
+      }
+    })
   };
 
 exports.findAll = (req, res) => {
@@ -141,3 +155,15 @@ exports.deleteAll = (req, res) => {
         });
       });
   };
+  function dateCheck(from,to,check) {
+
+    var fDate,lDate,cDate;
+    fDate = Date.parse(from);
+    lDate = Date.parse(to);
+    cDate = Date.parse(check);
+
+    if((cDate <= lDate && cDate >= fDate)) {
+        return true;
+    }
+    return false;
+}
