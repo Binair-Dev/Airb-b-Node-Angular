@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 import { countries } from '../_data/country-data-store';
 import { AuthService } from '../_services/auth.service';
 import { PropertyService } from '../_services/property.service';
-import { ValidationService } from '../_services/validation.service';
-import { sha256 } from '../_tools/password-hash';
 
 @Component({
   selector: 'app-property-add',

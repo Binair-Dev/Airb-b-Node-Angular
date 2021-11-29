@@ -75,7 +75,7 @@ exports.findAll = (req, res) => {
   };
 
 exports.update = (req, res) => {
-  if(!req.user.isAdmin) {
+  if(req.user._id !== req.body.proprioId) {
     res.status(401).send("Unauthorized")
     return;
   }

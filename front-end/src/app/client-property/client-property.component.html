@@ -1,0 +1,63 @@
+<div id="inscription">
+    <h1>{{title}}</h1>
+    <div class="popup" *ngIf="message.length > 0">
+        <div class="content">
+            <p>{{message}}</p>
+        </div>
+        <button (click)="popup = false; redirectToHome()">Fermer</button>
+    </div>
+    <div *ngIf="selected === null">
+        <div *ngFor="let prop of propertyList">
+            <div class="container">
+                <img style="width: 250px; height: 150px;" src="{{prop.PictureUrl}}">
+                <div class="container__text">
+                    <h2>{{prop.Titre}}</h2>
+                    <p>Description: {{prop.PetiteDescription}}</p>
+                    <p>Prix: {{prop.Prix}}€/Nuit</p>
+                    <button (click)="setSelected(prop)">Modifier</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="selected !== null">
+        <form [formGroup]="inscriptionForm" *ngIf="message.length === 0;">
+            <p appearance="outline">
+                <mat-label>Titre</mat-label>
+                <input matInput formControlName="Titre" id="Titre">
+                <control-messages [control]="inscriptionForm.get('Titre')"></control-messages>
+            </p>
+            <br>
+            <p appearance="outline">
+                <mat-label>Petite Description</mat-label>
+                <input matInput formControlName="PetiteDescription" id="PetiteDescription">
+                <control-messages [control]="inscriptionForm.get('PetiteDescription')"></control-messages>
+            </p>
+            <br>
+            <p appearance="outline">
+                <mat-label>Longue Description</mat-label>
+                <input matInput formControlName="LongueDescription" id="LongueDescription">
+                <control-messages [control]="inscriptionForm.get('LongueDescription')"></control-messages>
+            </p>
+            <br>
+            <p appearance="outline">
+                <mat-label>Photo du bien (Uploadez votre image&nbsp;<a target=”_blank” href="https://fr.imgbb.com">ICI</a>&nbsp;et copiez le lien)</mat-label>
+                <input formControlName="PictureUrl" id="PictureUrl">
+                <control-messages [control]="inscriptionForm.get('PictureUrl')"></control-messages>
+            </p>
+            <br>
+            <p appearance="outline">
+                <mat-label>Prix</mat-label>
+                <input type="number" formControlName="Prix" id="Prix">
+                <control-messages [control]="inscriptionForm.get('Prix')"></control-messages>
+            </p>
+            <br>
+            <p appearance="outline">
+                <mat-label>Assurance imposée</mat-label>
+                <input type="checkbox" formControlName="Assurance" id="Assurance">
+                <control-messages [control]="inscriptionForm.get('Assurance')"></control-messages>
+            </p>
+            <br>
+            <button mat-button type="submit" color="warn" [disabled]="!inscriptionForm.valid" (click)="updateProperty(inscriptionForm)">Valider</button>
+        </form>
+    </div>
+</div>

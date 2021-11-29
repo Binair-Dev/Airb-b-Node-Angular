@@ -27,7 +27,6 @@ exports.login = async (req, res) => {
         return;
       }
       
-      console.log("test");
       const accessToken = auth.generateToken(user);
       res.status(200).send({accessToken});
     }

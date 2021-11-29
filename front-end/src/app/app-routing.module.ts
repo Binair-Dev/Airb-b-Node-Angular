@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdministrationComponent } from './administration/administration.component';
+import { ClientPropertyComponent } from './client-property/client-property.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path : 'login', component : LoginComponent},
   {path : 'logout', component : LogoutComponent},
   {path : 'addproperty', component : PropertyAddComponent},
+  {path : 'client-properties', component : ClientPropertyComponent},
   {path : 'admin', component : AdministrationComponent},
   //{path : 'about', component : AboutComponent},
   //{path : 'nouveau', loadChildren : () => import('./nouveau/nouveau.module').then(m => m.NouveauModule)},

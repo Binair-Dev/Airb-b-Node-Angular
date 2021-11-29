@@ -17,7 +17,6 @@ export class RegisterComponent implements OnInit {
   message: String = "";
   countryList = countries;
   inscriptionForm: FormGroup;
-  isFirst = false;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.inscriptionForm = this.formBuilder.group({
