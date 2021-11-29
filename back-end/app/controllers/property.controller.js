@@ -90,15 +90,28 @@ exports.findAll = (req, res) => {
   };
 
 exports.update = (req, res) => {
-  if(req.user._id !== req.body.proprioId) {
-    res.status(401).send("Unauthorized")
-    return;
-  }
-    if (!req.body) {
-      return res.status(400).send({
-        message: "Data to update can not be empty!"
+  if(req.user.isAdmin === false){
+    if(req.user._id !== req.body.proprioId) {
+      res.status(401).send("Unauthorized")
+      return;
+    }else {
+      const id = req.params.id;
+  
+    Property.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+      .then(data => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot update Property with id=${id}. Maybe Property was not found!`
+          });
+        } else res.send({ message: "Property was updated successfully." });
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error updating Property with id=" + id
+        });
       });
     }
+  }
   
     const id = req.params.id;
   
@@ -117,10 +130,32 @@ exports.update = (req, res) => {
       });
   };
 exports.delete = (req, res) => {
-  if(req.user._id !== req.body.proprioId) {
-    res.status(401).send("Unauthorized")
-    return;
-  }
+  if(req.user.isAdmin === false){
+    if(req.user._id !== req.body.proprioId) {
+      res.status(401).send("Unauthorized")
+      return;
+    }else {
+      const id = req.params.id;
+  
+      Property.findByIdAndRemove(id)
+        .then(data => {
+          if (!data) {
+            res.status(404).send({
+              message: `Cannot delete Property with id=${id}. Maybe Property was not found!`
+            });
+          } else {
+            res.send({
+              message: "Property was deleted successfully!"
+            });
+          }
+        })
+        .catch(err => {
+          res.status(500).send({
+            message: "Could not delete Property with id=" + id
+          });
+        });
+      }
+    }
     const id = req.params.id;
   
     Property.findByIdAndRemove(id)

@@ -7,15 +7,15 @@ module.exports = app => {
     var find = require("express").Router();
   
     secured.post("/", property.create);
-    secured.get("/", property.findAll);
     secured.put("/:id", property.update);
     secured.delete("/:id", property.delete);
     secured.delete("/", property.deleteAll);
 
+    unsecured.get("/", property.findAll);
     unsecured.get("/:id", property.findAllByUserId);
     find.get("/:id", property.findById);
   
     app.use('/api/property', authenticateToken, secured);
-    app.use('/api/property', unsecured);
+    app.use('/api/properties', unsecured);
     app.use('/api/findProperty', find);
   };

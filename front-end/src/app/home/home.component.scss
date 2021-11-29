@@ -1,3 +1,28 @@
 h2 {
     text-align: center;
+    color: white;
+}
+
+#split {
+    width: 30%;
+}
+
+#container {
+    display: inline-block;
+    font-family: 'Lato', 'Helvetica', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    font-size: auto;
+    text-align: left;   
+    width: 30%;
+    height: 150px;
+    margin-left: 15px;
+    margin-top: 15px;
+    padding: 20px 20px;
+    background-color: #fff;
+    border-radius: 30px;
+}
+
+p {
+    margin-left: 260px;
 }

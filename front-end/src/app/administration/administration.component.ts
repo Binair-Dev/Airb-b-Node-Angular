@@ -23,7 +23,7 @@ export class AdministrationComponent implements OnInit {
     this.currentUser = this.authService.getUser();
     this.propertyService.getAll().then(data => {
       data.forEach(element => {
-        if(element.Attente === true) this.properties.push(element)
+        if(element.Attente === true && element.Deleted !== true) this.properties.push(element)
       });
     }).catch(error => {
       this.message = "Erreur d'authentification, veuillez vous reconnecter !";
@@ -41,7 +41,7 @@ export class AdministrationComponent implements OnInit {
  validate(prop: Property) {
     prop.Attente = false;
     this.propertyService.validateProperty(prop);
-    window.location.reload();
+    //window.location.reload();
   }
  del(prop: any) {
     prop.Attente = false;

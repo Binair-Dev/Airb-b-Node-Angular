@@ -12,17 +12,17 @@ export class PropertyService {
   constructor(private httpClient: HttpClient, private authService: AuthService) {
   } 
   getAll() {
-    return this.httpClient.get<Property[]>(this.AUTH_SERVER + "/api/property", {headers: {'Authorization':'Bearer ' + JSON.parse(this.authService.getToken()).accessToken}}).toPromise();
+    return this.httpClient.get<Property[]>(this.AUTH_SERVER + "/api/properties").toPromise();
   } 
   getByPropertyId(id: string) {
     return this.httpClient.get<Property>(this.AUTH_SERVER + "/api/findProperty/" + id).toPromise();
   } 
 
   validateProperty(property: any) {
-    return this.httpClient.put<Property[]>(this.AUTH_SERVER + "/api/property/" + property._id, property, {headers: {'Authorization':'Bearer ' + JSON.parse(this.authService.getToken()).accessToken}}).toPromise();
+    return this.httpClient.put(this.AUTH_SERVER + "/api/property/" + property._id, {Attente: false}, {headers: {'Authorization':'Bearer ' + JSON.parse(this.authService.getToken()).accessToken}}).toPromise();
   }
   deleteProperty(property: any) {
-    return this.httpClient.delete<Property[]>(this.AUTH_SERVER + "/api/property/" + property._id, {headers: {'Authorization':'Bearer ' + JSON.parse(this.authService.getToken()).accessToken}}).toPromise();
+    return this.httpClient.put(this.AUTH_SERVER + "/api/property/" + property._id, {Deleted: true}, {headers: {'Authorization':'Bearer ' + JSON.parse(this.authService.getToken()).accessToken}}).toPromise();
   }
   register(property: any) {
     return this.httpClient.post(this.AUTH_SERVER + "/api/property", property, {headers: {'Authorization':'Bearer ' + JSON.parse(this.authService.getToken()).accessToken}}).toPromise();
@@ -33,6 +33,6 @@ export class PropertyService {
   }
 
   registerContract(contract: any) {
-    return this.httpClient.post(this.AUTH_SERVER + "/api/contract", contract, {headers: {'Authorization':'Bearer ' + JSON.parse(this.authService.getToken()).accessToken}}).toPromise();
+    return this.httpClient.post(this.AUTH_SERVER + "/api/contract", contract).toPromise();
   }
 }
