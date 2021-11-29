@@ -7,6 +7,7 @@ exports.login = async (req, res) => {
   User.findOne({Email: req.body.Email}).then((data) => {
 
     let user = {
+      _id: data._id,
       Nom: data.Nom,
       Prenom: data.Prenom,
       Email: data.Email,

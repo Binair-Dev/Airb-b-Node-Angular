@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { countries } from '../_data/country-data-store';
 import { AuthService } from '../_services/auth.service';
+import { PropertyService } from '../_services/property.service';
 import { ValidationService } from '../_services/validation.service';
 import { sha256 } from '../_tools/password-hash';
 
@@ -18,14 +19,27 @@ export class PropertyAddComponent implements OnInit {
   inscriptionForm: FormGroup;
   isFirst = false;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private propertyService : PropertyService) {
     this.inscriptionForm = this.formBuilder.group({
-      Prenom: ['', [Validators.required]],
-      Nom: ['', [Validators.required]],
-      Email: ['', [Validators.required, ValidationService.emailValidator]],
+      Titre: ['', [Validators.required]],
+      PetiteDescription: ['', [Validators.required]],
+      LongueDescription: ['', [Validators.required]],
       Pays: ['', [Validators.required]],
-      Telephone: ['', [Validators.required]],
-      Password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
+      Ville: ['', [Validators.required]],
+      Rue: ['', [Validators.required]],
+      Num: ['', [Validators.required]],
+      CodePostal: ['', [Validators.required]],
+      PictureUrl: ['', [Validators.required]],
+      Capacite: ['', [Validators.required]],
+      SDB: ['', [Validators.required]],
+      WC: ['', [Validators.required]],
+      Jardin: [''],
+      Piscine: [''],
+      MachineALaver: [''],
+      Internet: [''],
+      AnimauxAdmis: [''],
+      Prix: ['', [Validators.required]],
+      Assurance: [''],
     });
   }
 
@@ -34,15 +48,24 @@ export class PropertyAddComponent implements OnInit {
   }
 
   redirectToHome(){
-    this.router.navigateByUrl("login");
+    this.router.navigateByUrl("");
   }
 
   async registerProperty(form) {
-    form.value.Password = await sha256(form.value.Password);
-    this.authService.register(form.value).toPromise().then(data => {
-        if(data) this.message = "Vous avez bien été enregistré !";
+    form.value.Attente = true;
+    form.value.proprioId = this.authService.getUser()._id;
+    
+    if(form.value.Jardin === "") form.value.Jardin = false;
+    if(form.value.Piscine === "") form.value.Piscine = false;
+    if(form.value.MachineALaver === "") form.value.MachineALaver = false;
+    if(form.value.Internet === "") form.value.Internet = false;
+    if(form.value.AnimauxAdmis === "") form.value.AnimauxAdmis = false;
+    if(form.value.Assurance === "") form.value.Assurance = false;
+    
+    this.propertyService.register(form.value).then(data => {
+        if(data) this.message = "Vous avez bien ajouté cette propriété !";
     }).catch(error => {
-        if(error) this.message = "Erreur lors de votre enregistrement.. Veuillez réessayer !";
+        if(error) this.message = "Erreur lors de l'ajout.. Veuillez réessayer !";
     });
   }
 }

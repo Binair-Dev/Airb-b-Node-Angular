@@ -2,14 +2,16 @@ const { authenticateToken } = require("../_tool/authentificator.js");
 module.exports = app => {
     const property = require("../controllers/property.controller.js");
   
-    var router = require("express").Router();
+    var secured = require("express").Router();
+    var unsecured = require("express").Router();
   
-    router.post("/", property.create);
-    router.get("/", property.findAll);
-    router.get("/:id", property.findOne);
-    router.put("/:id", property.update);
-    router.delete("/:id", property.delete);
-    router.delete("/", property.deleteAll);
+    secured.post("/", property.create);
+    secured.get("/", property.findAll);
+    unsecured.get("/:id", property.findAllByUserId);
+    secured.put("/:id", property.update);
+    secured.delete("/:id", property.delete);
+    secured.delete("/", property.deleteAll);
   
-    app.use('/api/property', authenticateToken, router);
+    app.use('/api/property', authenticateToken, secured);
+    app.use('/api/property', unsecured);
   };

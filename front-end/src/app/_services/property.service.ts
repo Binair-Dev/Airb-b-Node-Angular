@@ -21,4 +21,7 @@ export class PropertyService {
   deleteProperty(property: any) {
     return this.httpClient.delete<Property[]>(this.AUTH_SERVER + "/api/property/" + property._id, {headers: {'Authorization':'Bearer ' + JSON.parse(this.authService.getToken()).accessToken}}).toPromise();
   }
+  register(property: any) {
+    return this.httpClient.post(this.AUTH_SERVER + "/api/property", property, {headers: {'Authorization':'Bearer ' + JSON.parse(this.authService.getToken()).accessToken}}).toPromise();
+  }
 }

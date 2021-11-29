@@ -60,19 +60,17 @@ exports.findAll = (req, res) => {
       });
   };
 
-exports.findOne = (req, res) => {
-    const id = req.params.id;
-  
-    Property.findById(id)
+  exports.findAllByUserId = (req, res) => {
+    
+    Property.find({proprioId: req.body.proprioId})
       .then(data => {
-        if (!data)
-          res.status(404).send({ message: "Not found Property with id " + id });
-        else res.send(data);
+        res.send(data);
       })
       .catch(err => {
-        res
-          .status(500)
-          .send({ message: "Error retrieving Property with id=" + id });
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving property."
+        });
       });
   };
 
