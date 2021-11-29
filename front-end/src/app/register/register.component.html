@@ -4,53 +4,53 @@
         <div class="content">
             <p>{{message}}</p>
         </div>
-        <button (click)="popup = false; redirectToHome()">Fermer</button>
+        <button mat-button color="primary" (click)="popup = false; redirectToHome()">Fermer</button>
     </div>
-    <form [formGroup]="inscriptionForm" *ngIf="message.length === 0">
-        <p appearance="outline">
+    <form [formGroup]="inscriptionForm" *ngIf="message.length === 0" class="RegisterForm">
+        <p class="formSpacing">
             <mat-label>Nom</mat-label>
-            <input matInput formControlName="Nom" id="Nom">
+            <input class="right-label" matInput formControlName="Nom" id="Nom" placeholder="Nom">
             <control-messages [control]="inscriptionForm.get('Nom')"></control-messages>
         </p>
-        <br>
-        <p appearance="outline">
+         
+        <p class="formSpacing">
             <mat-label>Prénom</mat-label>
-            <input matInput formControlName="Prenom" id="Prenom">
+            <input class="right-label" matInput formControlName="Prenom" id="Prenom">
             <control-messages [control]="inscriptionForm.get('Prenom')"></control-messages>
         </p>
-        <br>
-        <p appearance="outline">
+         
+        <p class="formSpacing">
             <mat-label>Email</mat-label>
-            <input matInput formControlName="Email" id="Email" placeholder="Ex. myemail@example.com">
+            <input class="right-label" matInput formControlName="Email" id="Email" placeholder="Ex. myemail@example.com">
             <control-messages [control]="inscriptionForm.get('Email')"></control-messages>
         </p>
-        <br>
-        <p appearance="outline">
+         
+        <p class="formSpacing">
             <mat-label>Pays</mat-label>
-            <select formControlName="Pays" name="Pays" id="Pays">
+            <select class="right-label" formControlName="Pays" name="Pays" id="Pays">
                 <option value="" disabled selected>Pays</option>
                 <option *ngFor="let country of countryList" [value]="country.name">{{country.name}}</option>
            </select>
            
             <control-messages [control]="inscriptionForm.get('Pays')"></control-messages>
         </p>
-        <br>
-        <p appearance="outline">
+         
+        <p class="formSpacing">
             <mat-label>Téléphone</mat-label>
-            <input matInput formControlName="Telephone" id="Telephone" placeholder="Ex. 0497318436">
+            <input class="right-label" matInput formControlName="Telephone" id="Telephone" placeholder="Ex. 0497318436">
             <control-messages [control]="inscriptionForm.get('Telephone')"></control-messages>
         </p>
-        <br>
-        <p appearance="outline">
+         
+        <p class="formSpacing">
             <mat-label>Mot de passe</mat-label>
-            <input matInput type="Password" formControlName="Password" id="Password">
+            <input class="right-label" matInput type="Password" formControlName="Password" id="Password">
             <control-messages [control]="inscriptionForm.get('Password')"></control-messages>
         </p>
-        <br>
-        <p appearance="outline">
+         
+        <p class="formSpacing"class="CGUContainer" >
             <mat-label>CGU</mat-label>
-            <textarea readonly rows="1" style="max-width: 530px; width: 530px; height: 200px; max-height: 200px; min-width: 530px; min-height: 200px; cursor: initial; font-weight: bold;">
-                Conditions générales d’utilisation du site
+            <textarea readonly rows="1" >
+Conditions générales d’utilisation du site
 
 Article 1 : Objet
 
@@ -60,13 +60,13 @@ Constituant le contrat entre la société Airb&b, l’Utilisateur, l’accès au
 
 Article 2 : Mentions légales
 
-L’édition du site lapetiteperle est assurée par la société Airb&b inscrite au RCS sous le numéro 451 432 228, dont le siège social est localisé au 3 Rue Docteur Joubert, 59110, La Madeleine, France Métropolitaine.
+L’édition du site AirB&B est assurée par la société Airb&b inscrite au RCS sous le numéro 451 432 228, dont le siège social est localisé au 3 Rue Docteur Joubert, 59110, La Madeleine, France Métropolitaine.
 
-L’hébergeur du site lapetiteperle.fr est la société LHW, sise au 5 Rue Keller, 59100 Roubaix, France.
+L’hébergeur du site AirB&B.fr est la société LHW, sise au 5 Rue Keller, 59100 Roubaix, France.
 
 Article 3 : Accès au site
 
-Le site lapetiteperle permet d’accéder gratuitement aux services suivants :
+Le site AirB&B permet d’accéder gratuitement aux services suivants :
 
 Vente de bijoux (en or, en argent…) ;
 Location de bijoux (en or, en argent…) ;
@@ -87,7 +87,7 @@ Le formulaire de contact ;
 Son espace client.
 Article 5 : Propriété intellectuelle
 
-Les marques, logos ainsi que les contenus du site lapetiteperle (illustrations graphiques, textes…) sont protégés par le Code de la propriété intellectuelle et par le droit d’auteur.
+Les marques, logos ainsi que les contenus du site AirB&B (illustrations graphiques, textes…) sont protégés par le Code de la propriété intellectuelle et par le droit d’auteur.
 
 La reproduction et la copie des contenus par l’Utilisateur requièrent une autorisation préalable du site. Dans ce cas, toute utilisation à des usages commerciaux ou à des fins publicitaires est proscrite.
 
@@ -95,7 +95,7 @@ Article 6 : Responsabilité
 
 Bien que les informations publiées sur le site soient réputées fiables, le site se réserve la faculté d’une non-garantie de la fiabilité des sources.
 
-Les informations diffusées sur le site lapetiteperle sont présentées à titre purement informatif et sont sans valeur contractuelle. En dépit des mises à jour régulières, la responsabilité du site ne peut être engagée en cas de modification des dispositions administratives et juridiques apparaissant après la publication. Il en est de même pour l’utilisation et l’interprétation des informations communiquées sur la plateforme.
+Les informations diffusées sur le site AirB&B sont présentées à titre purement informatif et sont sans valeur contractuelle. En dépit des mises à jour régulières, la responsabilité du site ne peut être engagée en cas de modification des dispositions administratives et juridiques apparaissant après la publication. Il en est de même pour l’utilisation et l’interprétation des informations communiquées sur la plateforme.
 
 Le site décline toute responsabilité concernant les éventuels virus pouvant infecter le matériel informatique de l’Utilisateur après l’utilisation ou l’accès à ce site.
 
@@ -113,13 +113,13 @@ Lors des visites sur le site, l’installation automatique d’un cookie sur le 
 
 Les cookies correspondent à de petits fichiers déposés temporairement sur le disque dur de l’ordinateur de l’Utilisateur. Ces cookies sont nécessaires pour assurer l’accessibilité et la navigation sur le site. Ces fichiers ne comportent pas d’informations personnelles et ne peuvent pas être utilisés pour l’identification d’une personne.
 
-L’information présente dans les cookies est utilisée pour améliorer les performances de navigation sur le site lapetiteperle.fr.
+L’information présente dans les cookies est utilisée pour améliorer les performances de navigation sur le site AirB&B.fr.
 
 En naviguant sur le site, l’Utilisateur accepte les cookies. Leur désactivation peut s’effectuer via les paramètres du logiciel de navigation.
 
 Article 9 : Publication par l’Utilisateur
 
-Le site lapetiteperle permet aux membres de publier des commentaires.
+Le site AirB&B permet aux membres de publier des commentaires.
 
 Dans ses publications, le membre est tenu de respecter les règles de la Netiquette ainsi que les règles de droit en vigueur.
 
@@ -142,15 +142,13 @@ Article 12 : Droit applicable et juridiction compétente
 Le présent contrat est soumis à la législation française. L’absence de résolution à l’amiable des cas de litige entre les parties implique le recours aux tribunaux français compétents pour régler le contentieux.
             </textarea>
         </p>
-        <br>
-        <!-- <mat-slide-toggle color="primary">Afficher le mot de passe</mat-slide-toggle>
-        <br> -->
-        <a style="color: red" >En vous inscrivant, vous acceptez les conditions générales d'utilisation !</a><br>
-        <button mat-button type="submit" color="warn" [disabled]="!inscriptionForm.valid" (click)="registerAccount(inscriptionForm)">S'INSCRIRE</button>
-        <br>
-        <br>
-        <br>
-        <h2>Vous avez déjà un compte ?</h2>
-        <button mat-button color="primary" [routerLink]="'/login'">CONNECTEZ VOUS</button>
+         
+        
+        <p class="formSpacing"class="ValidCGU">En vous inscrivant, vous acceptez les conditions générales d'utilisation !</p> 
+        <div class="confirmForm">
+            <button class="inscriptionButton" mat-button type="submit" color="warn" [disabled]="!inscriptionForm.valid" (click)="registerAccount(inscriptionForm)">S'INSCRIRE</button>
+            <h2>Vous avez déjà un compte ?</h2>
+            <button mat-button color="primary" [routerLink]="'/login'">CONNECTEZ VOUS</button>
+        </div>
     </form>
 </div>
