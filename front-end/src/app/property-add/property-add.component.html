@@ -125,6 +125,12 @@
             <control-messages [control]="inscriptionForm.get('Assurance')"></control-messages>
         </p>
         <br>
+        <p appearance="outline">
+            <mat-label>Disponible</mat-label>
+            <input type="checkbox" formControlName="Availlable" id="Availlable">
+            <control-messages [control]="inscriptionForm.get('Availlable')"></control-messages>
+        </p>
+        <br>
         <button mat-button type="submit" color="warn" [disabled]="!inscriptionForm.valid" (click)="registerProperty(inscriptionForm)">Valider</button>
     </form>
 </div>

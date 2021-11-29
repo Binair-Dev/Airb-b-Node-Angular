@@ -39,6 +39,7 @@ export class ClientPropertyComponent implements OnInit {
       AnimauxAdmis: [''],
       Prix: ['', [Validators.required]],
       Assurance: [''],
+      Availlable: [''],
     });
   }
 
@@ -61,6 +62,7 @@ export class ClientPropertyComponent implements OnInit {
       PictureUrl: [prop.PictureUrl, [Validators.required]],
       Prix: [prop.Prix, [Validators.required]],
       Assurance: [prop.Assurance],
+      Availlable: [prop.Availlable],
     });
     this.title = "MODIFIE: " + this.selected.Titre;
   }
@@ -76,6 +78,8 @@ export class ClientPropertyComponent implements OnInit {
     this.selected.PictureUrl = form.value.PictureUrl;
     this.selected.Prix = form.value.Prix;
     this.selected.Assurance = form.value.Assurance;
+    this.selected.Availlable = form.value.Availlable;
+    
     this.propertyService.updateProperty(this.selected).then(data => {
       if(data !== null) this.message = "Propriété mise a jours avec succès";
     }).catch(error => {
