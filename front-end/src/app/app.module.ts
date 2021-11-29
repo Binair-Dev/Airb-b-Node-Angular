@@ -16,6 +16,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { PropertyAddComponent } from './property-add/property-add.component';
 import { ClientPropertyComponent } from './client-property/client-property.component';
+import { PropertyRentComponent } from './property-rent/property-rent.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ClientPropertyComponent } from './client-property/client-property.compo
     AdministrationComponent,
     PropertyAddComponent,
     ClientPropertyComponent,
+    PropertyRentComponent,
   ],
   imports: [
     BrowserModule,

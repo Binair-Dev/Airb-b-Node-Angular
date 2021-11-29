@@ -1,0 +1,62 @@
+<h1 style="text-align: center;" >{{title}}</h1>
+<div class="popup" *ngIf="message !== null">
+    <div class="content">
+        <p style="text-decoration: underline;" >{{message}}</p>
+        <p>Frais de dossier: 5€</p>
+        <p>Frais d'assurance: {{days * 10}}€</p>
+        <p>Prix de la location: {{days * selected.Prix}}€</p>
+        <hr>
+        <p style="text-decoration: underline; font-weight: bold;" >Total: {{5 + (days * selected.Prix) + (days * 10)}}€</p>
+    </div>
+    <button (click)="popup = false; validate()">Valider</button>
+</div>
+<div *ngIf="message === null && selected !== null">
+    <hr>
+    <div class="centered">
+        <img style="width: 600px; height: auto;" src="{{selected.PictureUrl}}">
+    </div>
+    <div class="centered">
+        <div class="centered__text">
+            <h2>{{selected.Titre}}</h2>
+            <hr>
+            <p>Description: {{selected.LongueDescription}}</p>
+            <hr>
+            <h2>Specs</h2>
+            <p>Capacité: {{selected.Capacite}} personnes</p>
+            <p>Sale de bain(s): {{selected.SDB}}</p>
+            <p>Toilette(s): {{selected.WC}}</p>
+            <p>Jardin: {{selected.Jardin ? "Oui" : "Non"}}</p>
+            <p>Piscine: {{selected.Piscine ? "Oui" : "Non"}}</p>
+            <p>Machine a laver: {{selected.MachineALaver ? "Oui" : "Non"}}</p>
+            <p>Internet: {{selected.Internet ? "Oui" : "Non"}}</p>
+            <p>Animaux admis: {{selected.AnimauxAdmis ? "Oui" : "Non"}}</p>
+            <p>Assurance activée: {{selected.Assurance ? "Oui" : "Non"}}</p>
+            <hr>
+            <h2>Adresse</h2>
+            <p>{{selected.Num}} {{selected.Rue}}</p>
+            <p>{{selected.CodePostal}} {{selected.Ville}}</p>
+            <hr>
+            <form [formGroup]="rentForm">
+                <p appearance="outline">
+                    <mat-label style="margin-right: 5px;" >Date de départ:</mat-label>
+                    <input matInput type="date" formControlName="Date1" id="Date1" placeholder="24/12/2021">
+                    <control-messages [control]="rentForm.get('Date1')"></control-messages>
+                </p>
+                <p appearance="outline">
+                    <mat-label style="margin-right: 5px;" >Date de fin:</mat-label>
+                    <input matInput type="date" formControlName="Date2" id="Date2" placeholder="25/12/2021">
+                    <control-messages [control]="rentForm.get('Date2')"></control-messages>
+                </p>
+                <p appearance="outline">
+                    <mat-label style="margin-right: 5px;" >Assurance:</mat-label>
+                    <input type="checkbox" formControlName="Assurance" id="Assurance">
+                    <control-messages [control]="rentForm.get('Assurance')"></control-messages>
+                </p>
+            </form>
+            
+            <p>Prix: {{selected.Prix}}€/Nuit</p>
+            <button (click)="rent(rentForm)">Louer</button>
+        </div>
+    </div>
+    <hr>
+</div>

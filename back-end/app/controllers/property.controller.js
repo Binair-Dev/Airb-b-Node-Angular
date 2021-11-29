@@ -46,6 +46,19 @@ exports.create = (req, res) => {
       });
   };
 
+  exports.findById = (req, res) => {
+    const _id = req.params.id;
+    Property.find({_id : _id}).then(data => {
+      res.send(data[0]);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving property."
+      });
+    });
+  };
+
 exports.findAll = (req, res) => {
     const title = req.query.title;
     var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};

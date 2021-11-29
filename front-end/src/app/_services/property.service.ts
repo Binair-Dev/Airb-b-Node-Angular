@@ -14,6 +14,9 @@ export class PropertyService {
   getAll() {
     return this.httpClient.get<Property[]>(this.AUTH_SERVER + "/api/property", {headers: {'Authorization':'Bearer ' + JSON.parse(this.authService.getToken()).accessToken}}).toPromise();
   } 
+  getByPropertyId(id: string) {
+    return this.httpClient.get<Property>(this.AUTH_SERVER + "/api/findProperty/" + id).toPromise();
+  } 
 
   validateProperty(property: any) {
     return this.httpClient.put<Property[]>(this.AUTH_SERVER + "/api/property/" + property._id, property, {headers: {'Authorization':'Bearer ' + JSON.parse(this.authService.getToken()).accessToken}}).toPromise();

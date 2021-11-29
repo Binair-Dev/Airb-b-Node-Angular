@@ -1,0 +1,29 @@
+.container {
+    width: 700px;
+    margin: 0 auto;
+    padding-top: 15px;
+    padding-left: 15px;
+    &__text {
+      margin-left: 25px;
+      display: inline-block;
+      text-align: left;
+    }
+}
+
+button {
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.centered {
+    text-align: center;
+    &__text {
+        margin-left: 25px;
+        display: inline-block;
+        text-align: center;
+      }
+}
+
+.popup {
+    text-align: center;
+}

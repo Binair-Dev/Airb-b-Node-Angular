@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { PropertyAddComponent } from './property-add/property-add.component';
+import { PropertyRentComponent } from './property-rent/property-rent.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path : 'login', component : LoginComponent},
   {path : 'logout', component : LogoutComponent},
   {path : 'addproperty', component : PropertyAddComponent},
+  {path : 'rentproperty', component : PropertyRentComponent},
   {path : 'client-properties', component : ClientPropertyComponent},
   {path : 'admin', component : AdministrationComponent},
   //{path : 'about', component : AboutComponent},
