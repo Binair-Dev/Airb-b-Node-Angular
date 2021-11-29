@@ -20,5 +20,6 @@ export interface Property {
     Prix: Number,
     proprioId: String,
     Assurance: Boolean,
-    Attente: Boolean
+    Attente: Boolean,
+    Availlable: Boolean
 }
