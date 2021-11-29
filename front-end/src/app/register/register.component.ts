@@ -38,6 +38,7 @@ export class RegisterComponent implements OnInit {
   }
 
   async registerAccount(form) {
+    form.value.isAdmin = false;
     form.value.Password = await sha256(form.value.Password);
     this.authService.register(form.value).toPromise().then(data => {
         if(data) this.message = "Vous avez bien été enregistré !";
