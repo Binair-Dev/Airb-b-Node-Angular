@@ -29,7 +29,8 @@ exports.create = (req, res) => {
       proprioId: req.body.proprioId,
       Assurance: req.body.Assurance,
       Attente: req.body.Attente,
-      Availlable: req.body.Availlable
+      Availlable: req.body.Availlable,
+      Deleted: req.body.Deleted
     });
   
     property
@@ -103,7 +104,7 @@ exports.update = (req, res) => {
       });
   };
 exports.delete = (req, res) => {
-  if(!req.user.isAdmin) {
+  if(req.user._id !== req.body.proprioId) {
     res.status(401).send("Unauthorized")
     return;
   }

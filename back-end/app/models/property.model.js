@@ -22,7 +22,8 @@ module.exports = mongoose => {
         proprioId: String,
         Assurance: Boolean,
         Attente: Boolean,
-        Availlable: Boolean
+        Availlable: Boolean,
+        Deleted: Boolean
       },{
         versionKey: false,
         collection: "properties",

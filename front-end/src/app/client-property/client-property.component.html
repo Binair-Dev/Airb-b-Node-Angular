@@ -1,5 +1,5 @@
 <div id="inscription">
-    <h1>{{title}}</h1>
+    <h1 style="padding-bottom: 50px;" >{{title}}</h1>
     <div class="popup" *ngIf="message.length > 0">
         <div class="content">
             <p>{{message}}</p>
@@ -63,7 +63,8 @@
                 <control-messages [control]="inscriptionForm.get('Availlable')"></control-messages>
             </p>
             <br>
-            <button mat-button type="submit" color="warn" [disabled]="!inscriptionForm.valid" (click)="updateProperty(inscriptionForm)">Valider</button>
+            <button mat-button type="submit" color="warn" [disabled]="!inscriptionForm.valid" (click)="updateProperty(inscriptionForm)">Valider</button><br>
+            <button mat-button type="submit" color="warn" [disabled]="!inscriptionForm.valid" (click)="deleteProperty(inscriptionForm)">Supprimer la propriété</button>
         </form>
     </div>
 </div>

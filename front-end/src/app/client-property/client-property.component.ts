@@ -46,7 +46,7 @@ export class ClientPropertyComponent implements OnInit {
   ngOnInit(): void {
     this.propertyService.getAll().then(data => {
       data.forEach(element => {
-        if(element.proprioId === this.authService.getUser()._id) {
+        if(element.proprioId === this.authService.getUser()._id && element.Deleted === false) {
           this.propertyList.push(element);
         }
       });
@@ -82,6 +82,16 @@ export class ClientPropertyComponent implements OnInit {
     
     this.propertyService.updateProperty(this.selected).then(data => {
       if(data !== null) this.message = "Propriété mise a jours avec succès";
+    }).catch(error => {
+      console.log(error);
+        if(error !== null) this.message = "Erreur, veuillez ré-essayer !"
+    });
+  }
+
+  async deleteProperty() {
+    this.selected.Deleted = true;
+    this.propertyService.updateProperty(this.selected).then(data => {
+      if(data !== null) this.message = "Propriété supprimée succès";
     }).catch(error => {
       console.log(error);
         if(error !== null) this.message = "Erreur, veuillez ré-essayer !"

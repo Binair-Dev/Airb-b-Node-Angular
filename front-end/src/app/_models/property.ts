@@ -21,5 +21,6 @@ export interface Property {
     proprioId: String,
     Assurance: Boolean,
     Attente: Boolean,
-    Availlable: Boolean
+    Availlable: Boolean,
+    Deleted: Boolean
 }
