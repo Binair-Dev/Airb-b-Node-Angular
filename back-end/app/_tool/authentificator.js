@@ -28,10 +28,6 @@ exports.authenticateToken = (req, res, next) => {
         
         req.user = user;
         next();
-        console.log("NOW REQUEST");
       })
     })
 }
-// exports.generateRefresh = (user) => {
-//     return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '1y'})
-// }

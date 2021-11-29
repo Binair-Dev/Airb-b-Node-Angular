@@ -1,0 +1,130 @@
+<div id="inscription">
+    <h1>{{title}}</h1>
+    <div class="popup" *ngIf="message.length > 0">
+        <div class="content">
+            <p>{{message}}</p>
+        </div>
+        <button (click)="popup = false; redirectToHome()">Fermer</button>
+    </div>
+    <form [formGroup]="inscriptionForm" *ngIf="message.length === 0">
+        <p appearance="outline">
+            <mat-label>Titre</mat-label>
+            <input matInput formControlName="Titre" id="Titre">
+            <control-messages [control]="inscriptionForm.get('Titre')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Petite Description</mat-label>
+            <input matInput formControlName="PetiteDescription" id="PetiteDescription">
+            <control-messages [control]="inscriptionForm.get('PetiteDescription')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Longue Description</mat-label>
+            <input matInput formControlName="LongueDescription" id="LongueDescription">
+            <control-messages [control]="inscriptionForm.get('LongueDescription')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Pays</mat-label>
+            <select formControlName="Pays" name="Pays" id="Pays">
+                <option value="" disabled selected>Pays</option>
+                <option *ngFor="let country of countryList" [value]="country.name">{{country.name}}</option>
+           </select>
+           
+            <control-messages [control]="inscriptionForm.get('Pays')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Ville</mat-label>
+            <input matInput formControlName="Ville" id="Ville">
+            <control-messages [control]="inscriptionForm.get('Ville')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Rue</mat-label>
+            <input matInput formControlName="Rue" id="Rue">
+            <control-messages [control]="inscriptionForm.get('Rue')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Num</mat-label>
+            <input type="number" formControlName="Num" id="Num">
+            <control-messages [control]="inscriptionForm.get('Num')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Code Postal</mat-label>
+            <input type="number" formControlName="CodePostal" id="CodePostal">
+            <control-messages [control]="inscriptionForm.get('CodePostal')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Temporaire (Image)</mat-label>
+            <input formControlName="PictureUrl" id="PictureUrl">
+            <control-messages [control]="inscriptionForm.get('PictureUrl')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Capacite</mat-label>
+            <input type="number" formControlName="Capacite" id="Capacite">
+            <control-messages [control]="inscriptionForm.get('Capacite')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Salle(s) de bain(s)</mat-label>
+            <input type="number" formControlName="SDB" id="SDB">
+            <control-messages [control]="inscriptionForm.get('SDB')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>WC(s)</mat-label>
+            <input type="number" formControlName="WC" id="WC">
+            <control-messages [control]="inscriptionForm.get('WC')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Jardin</mat-label>
+            <input type="checkbox" formControlName="Jardin" id="Jardin">
+            <control-messages [control]="inscriptionForm.get('Jardin')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Piscine</mat-label>
+            <input type="checkbox" formControlName="Piscine" id="Piscine">
+            <control-messages [control]="inscriptionForm.get('Piscine')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Machine à laver</mat-label>
+            <input type="checkbox" formControlName="MachineALaver" id="MachineALaver">
+            <control-messages [control]="inscriptionForm.get('MachineALaver')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Internet</mat-label>
+            <input type="checkbox" formControlName="Internet" id="Internet">
+            <control-messages [control]="inscriptionForm.get('Internet')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Animaux Admis</mat-label>
+            <input type="checkbox" formControlName="AnimauxAdmis" id="AnimauxAdmis">
+            <control-messages [control]="inscriptionForm.get('AnimauxAdmis')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Prix</mat-label>
+            <input type="number" formControlName="Prix" id="Prix">
+            <control-messages [control]="inscriptionForm.get('Prix')"></control-messages>
+        </p>
+        <br>
+        <p appearance="outline">
+            <mat-label>Assurance imposée</mat-label>
+            <input type="checkbox" formControlName="Assurance" id="Assurance">
+            <control-messages [control]="inscriptionForm.get('Assurance')"></control-messages>
+        </p>
+        <br>
+        <button mat-button type="submit" color="warn" [disabled]="!inscriptionForm.valid" (click)="registerProperty(inscriptionForm)">Valider</button>
+    </form>
+</div>

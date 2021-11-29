@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AdministrationComponent } from './administration/administration.component';
+import { PropertyAddComponent } from './property-add/property-add.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AdministrationComponent } from './administration/administration.compone
     LoginComponent,
     LogoutComponent,
     AdministrationComponent,
+    PropertyAddComponent,
   ],
   imports: [
     BrowserModule,

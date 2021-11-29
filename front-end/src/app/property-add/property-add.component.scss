@@ -1,0 +1,25 @@
+div {
+    font-family: arial;
+    font-size: 18px;
+    outline: 1px;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+mat-label {
+    font-family: arial;
+    font-size: 18px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+select {
+    width: 265px;
+    padding: 5px;
+}
+
+input {
+    width: 250px;
+    padding: 5px;
+}

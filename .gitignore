@@ -124,7 +124,8 @@ dist
 /bazel-out
 /integration/bazel/bazel-*
 *.log
-node_modules
+/front-end/node_modules
+/back-end/node_modules
 
 # Include when developing application packages.
 pubspec.lock

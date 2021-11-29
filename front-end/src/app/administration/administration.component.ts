@@ -16,9 +16,11 @@ export class AdministrationComponent implements OnInit {
   selected: Property = null;
   properties: Property[] = [];
   members: User[] = [];
+  currentUser: User = null;
   constructor(private propertyService: PropertyService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.currentUser = this.authService.getUser();
     this.propertyService.getAll().then(data => {
       data.forEach(element => {
         if(element.Attente === true) this.properties.push(element)
@@ -36,14 +38,12 @@ export class AdministrationComponent implements OnInit {
     }); ;  
   }
 
- validate(id: any) {
-    let prop = this.properties[id];
+ validate(prop: Property) {
     prop.Attente = false;
     this.propertyService.validateProperty(prop);
     window.location.reload();
   }
- del(id: any) {
-    let prop = this.properties[id];
+ del(prop: any) {
     prop.Attente = false;
     this.propertyService.deleteProperty(prop);
     window.location.reload();

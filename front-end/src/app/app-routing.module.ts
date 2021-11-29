@@ -4,8 +4,8 @@ import { AdministrationComponent } from './administration/administration.compone
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { PropertyAddComponent } from './property-add/property-add.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthGuard } from './_guards/auth-guard.service';
 
 const routes: Routes = [
   {path : '', component : HomeComponent},
@@ -13,7 +13,8 @@ const routes: Routes = [
   {path : 'register', component : RegisterComponent},
   {path : 'login', component : LoginComponent},
   {path : 'logout', component : LogoutComponent},
-  {path : 'admin', component : AdministrationComponent, canActivate: [AuthGuard]},
+  {path : 'addproperty', component : PropertyAddComponent},
+  {path : 'admin', component : AdministrationComponent},
   //{path : 'about', component : AboutComponent},
   //{path : 'nouveau', loadChildren : () => import('./nouveau/nouveau.module').then(m => m.NouveauModule)},
 ];

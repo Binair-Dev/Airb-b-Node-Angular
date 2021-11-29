@@ -34,6 +34,7 @@ export class NavComponent implements OnInit {
     }
     else {
       let user = this.authService.getUser();
+      this.listeLien.push({url: '/addproperty', title : 'Ajouter'});
       this.listeLien.push({url: '/logout', title : 'Logout'});
       if(user.isAdmin === true) {
         this.listeLien.push({url: '/admin', title : 'Admin'});

@@ -22,8 +22,8 @@
                     <p>Description: {{prop.PetiteDescription}}</p>
                     <p>Prix: {{prop.Prix}}€/Nuit</p>
                     <button (click)="profile(i)">Plus d'informations</button>
-                    <button (click)="validate(i)" >Valider</button>
-                    <button (click)="del(i)">Supprimer</button>
+                    <button (click)="validate(prop)" >Valider</button>
+                    <button (click)="del(prop)">Supprimer</button>
                 </div>
             </div>
         </div>
@@ -58,8 +58,8 @@
                 <hr>
                 <p>Prix: {{selected.Prix}}€/Nuit</p>
                 <button (click)="reset(null)">Retour</button>
-                <button (click)="validate(i)" >Valider</button>
-                <button (click)="del(i)">Supprimer</button>
+                <button (click)="validate(selected)" >Valider</button>
+                <button (click)="del(selected)">Supprimer</button>
             </div>
         </div>
         <hr>
@@ -75,9 +75,9 @@
         <div *ngFor="let prop of members;" class="container">
             <div class="centered">
                 <p>{{prop.Nom}} {{prop.Prenom}}</p>
-                <button *ngIf="prop.isAdmin && (prop.Email !== 'van.bellinghen.brian@gmail.com')" (click)="switchAdmin(prop)">Révoquer Administrateur</button>
+                <button *ngIf="prop.isAdmin && (prop.Email !== currentUser.Email)" (click)="switchAdmin(prop)">Révoquer Administrateur</button>
                 <button *ngIf="!prop.isAdmin" (click)="switchAdmin(prop)" >Passer Administrateur</button>
-                <button *ngIf="prop.Nom !== 'Van Bellinghen'" (click)="delUser(prop)">Supprimer</button>
+                <button *ngIf="prop.Email !== currentUser.Email" (click)="delUser(prop)">Supprimer</button>
                 <hr>
             </div>
         </div>
