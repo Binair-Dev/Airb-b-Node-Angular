@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Property } from '../_models/property';
+import { AuthService } from '../_services/auth.service';
 import { PropertyService } from '../_services/property.service';
 
 @Component({
@@ -12,7 +14,7 @@ export class CarouselComponent {
   carousel: Property[] = []
   currentSlide = 0;
 
-  constructor(private propServices: PropertyService) { }
+  constructor(private propServices: PropertyService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void { 
     this.propServices.getAll().then(data => {
@@ -37,5 +39,12 @@ export class CarouselComponent {
     const next = this.currentSlide + 1;
     this.currentSlide = next === this.carousel.length ? 0 : next;
     console.log("next clicked, new current slide is: ", this.currentSlide);
+  }
+
+  open() {
+    if(this.authService.getUser() !== null)
+      this.router.navigateByUrl('rentproperty?property=' + this.carousel[this.currentSlide]._id)
+    else
+      window.alert("Erreur, Vous devez être connecté pour voir les détails d'une propriété!");
   }
 }

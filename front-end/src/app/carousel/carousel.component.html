@@ -3,8 +3,10 @@
     <span class="special">«</span>
   </button>
 
-    <ng-container *ngFor="let slide of carousel; let i = index">
-      <img class="carousel-image" *ngIf="i === currentSlide" src="{{slide.PictureUrl}}"/>
+    <ng-container *ngFor="let slide of carousel; let i = index" (click)="open()">
+      <a (click)="open()">
+        <img class="carousel-image" *ngIf="i === currentSlide" src="{{slide.PictureUrl}}"/>
+      </a>
     </ng-container>
 
   <button class="button next" (click)="onNextClick()">
