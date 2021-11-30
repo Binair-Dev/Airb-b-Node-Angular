@@ -28,6 +28,9 @@ export class HomeComponent implements OnInit {
   }
 
   rentProp(id: string) {
-    this.router.navigateByUrl('rentproperty?property=' + id)
+    if(this.authService.getUser() !== null)
+      this.router.navigateByUrl('rentproperty?property=' + id)
+    else
+      window.alert("Erreur, Vous devez être connecté pour voir les détails d'une propriété!");
   }
 }

@@ -1,0 +1,14 @@
+<div class="carousel">
+  <button class="button previous" (click)="onPreviousClick()">
+    <span class="special">«</span>
+  </button>
+
+    <ng-container *ngFor="let slide of carousel; let i = index">
+      <img class="carousel-image" *ngIf="i === currentSlide" src="{{slide.PictureUrl}}"/>
+    </ng-container>
+
+  <button class="button next" (click)="onNextClick()">
+    <span class="special">»</span>
+  </button>
+  </div>
+  <hr>

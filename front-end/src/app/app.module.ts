@@ -17,6 +17,7 @@ import { AdministrationComponent } from './administration/administration.compone
 import { PropertyAddComponent } from './property-add/property-add.component';
 import { ClientPropertyComponent } from './client-property/client-property.component';
 import { PropertyRentComponent } from './property-rent/property-rent.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { PropertyRentComponent } from './property-rent/property-rent.component';
     PropertyAddComponent,
     ClientPropertyComponent,
     PropertyRentComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
