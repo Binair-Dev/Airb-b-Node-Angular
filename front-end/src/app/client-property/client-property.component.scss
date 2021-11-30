@@ -1,7 +1,17 @@
-div {
-    font-family: arial;
-    font-size: 18px;
-    outline: 1px;
+#inscription {
+    font-family: 'Lato', 'Helvetica', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    font-size: auto;
+    text-align: left;   
+    width: 600px;
+    margin: -10px auto; 
+    padding: 20px 20px;
+    background-color: rgb(256, 256, 256, 0.7);
+    border-radius: 30px;
+}
+
+#inscription > h1 {
     text-align: center;
 }
 
@@ -13,17 +23,34 @@ mat-label {
     justify-content: center;
 }
 
-select {
-    width: 265px;
-    padding: 5px;
+.container {
+    position: relative;
+    left: 50px;
 }
 
-input {
-    width: 250px;
-    padding: 5px;
+.alignInfo {
+    display: inline-block;
+    text-align: left;
+    width: 40%;
 }
 
-button {
-    margin-right: 5px;
-    margin-bottom: 10px;
+.container > div {
+    position: absolute;
+    top: -10px;
+    right: 50px;
+}
+
+.borderedBottom {
+    border-bottom: 1px solid #000;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.borderedBottom:last-child {
+    border-bottom: none;
+}
+
+.borderedBottom:first-child {
+    padding-top: 0px;
+    margin-top: -30px;
 }

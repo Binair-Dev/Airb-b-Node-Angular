@@ -54,6 +54,7 @@ export class PropertyAddComponent implements OnInit {
     form.value.Attente = true;
     form.value.proprioId = this.authService.getUser()._id;
     form.value.Availlable = true;
+    form.value.Deleted = false;
     
     if(form.value.Jardin === "") form.value.Jardin = false;
     if(form.value.Piscine === "") form.value.Piscine = false;
