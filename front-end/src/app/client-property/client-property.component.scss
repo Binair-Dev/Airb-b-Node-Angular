@@ -1,8 +1,19 @@
-div {
-    font-family: arial;
-    font-size: 18px;
-    outline: 1px;
+#inscription {
+    font-family: 'Lato', 'Helvetica', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    font-size: auto;
+    text-align: left;   
+    width: 400px;
+    margin: -10px auto; 
+    padding: 20px 100px;
+    background-color: rgb(256, 256, 256, 0.7);
+    border-radius: 30px;
+}
+
+#inscription > h1 {
     text-align: center;
+    margin: 0px 0px 20px 0px;
 }
 
 mat-label {
@@ -13,17 +24,11 @@ mat-label {
     justify-content: center;
 }
 
-select {
-    width: 265px;
-    padding: 5px;
+.container {
+    text-align: center;
 }
 
-input {
-    width: 250px;
-    padding: 5px;
-}
-
-button {
-    margin-right: 5px;
-    margin-bottom: 10px;
+.alignInfo {
+    display: inline-block;
+    width: 50%;
 }
