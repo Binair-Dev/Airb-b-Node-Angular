@@ -5,7 +5,7 @@ li {
     margin-left: 30px;
 }
 
-ul {
+.navUl {
     padding-inline-start: 0px;
 }
 
@@ -47,6 +47,7 @@ a {
 .nav {
     padding: 10px 0px;
     text-align: center;
+    top: 0;
 }
 
 li:first-child {

@@ -1,5 +1,5 @@
 <div class="nav">
-    <ul>
+    <ul class="navUl">
         <li *ngFor="let link of listeLien;">
             <a routerLink="{{link.url}}" (click)="toggle(link)">
                 {{link.title}}
