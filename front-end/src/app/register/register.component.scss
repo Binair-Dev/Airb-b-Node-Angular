@@ -16,12 +16,6 @@
     margin: 0px 0px 20px 0px;
 }
 
-.formSpacing {
-    padding: 10px 0px 10px 10px;
-    border: 1px solid rgb(214, 214, 214);
-    margin: 0px;
-}
-
 .RegisterForm > p:first-child{
     border-radius: 15px 15px 0px 0px;
 }
@@ -29,6 +23,12 @@
 
 .RegisterForm > p:nth-child(6){
     border-radius: 0px 0px 15px 15px;
+}
+
+.formSpacing {
+    padding: 10px 0px 10px 10px;
+    border: 1px solid rgb(214, 214, 214);
+    margin: 0px;
 }
 
 mat-label {

@@ -1,25 +1,80 @@
-div {
-    font-family: arial;
-    font-size: 18px;
-    outline: 1px;
+#inscription{
+    font-family: 'Lato', 'Helvetica', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    font-size: auto;
+    text-align: left;   
+    width: 400px;
+    margin: -10px auto; 
+    padding: 20px 100px;
+    background-color: #fff;
+    border-radius: 30px;
+}
+
+#inscription > h1 {
     text-align: center;
-    padding-bottom: 50px;
+    margin: 0px 0px 20px 0px;
+}
+
+.addRentForm > p:first-child{
+    border-radius: 15px 15px 0px 0px;
+}
+
+.addRentForm > p:nth-child(20){
+    border-radius: 0px 0px 15px 15px;
+}
+
+.formSpacing {
+    padding: 10px 0px 10px 10px;
+    border: 1px solid rgb(214, 214, 214);
+    margin: 0px;
 }
 
 mat-label {
-    font-family: arial;
     font-size: 18px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
 }
 
 select {
-    width: 265px;
+    width: 210px;
     padding: 5px;
+    border: none;
 }
 
 input {
-    width: 250px;
+    width: 200px;
     padding: 5px;
+    font-weight: 300;
+    font-size: 16px;
+    border: none;
+}
+
+.right-label {
+    float: right;
+    border-left: 1px solid #888;
+}
+
+.pictureBien{
+    display: grid;
+}
+
+.photoBien{
+    width: 95%;
+    border-left: none;
+    border-top: 1px solid #888;
+    margin-top: 15px;
+    padding-top: 15px;
+}
+
+.validationButton {
+    text-align: center;
+}
+
+.validationButton > button {
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.popup {
+    padding-top: 10px;
+    text-align: center;
 }
