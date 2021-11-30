@@ -12,7 +12,7 @@ import { PropertyService } from '../_services/property.service';
   styleUrls: ['./client-property.component.scss']
 })
 export class ClientPropertyComponent implements OnInit {
-  title: String = "LISTE DE TES PROPRIETE";
+  title: String = "LISTE DE TES PROPRIETES";
   message: String = "";
   propertyList: Property[] = [];
   inscriptionForm: FormGroup;

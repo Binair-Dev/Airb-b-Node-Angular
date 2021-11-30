@@ -6,8 +6,8 @@
         </div>
         <button (click)="popup = false; redirectToHome()">Fermer</button>
     </div>
-    <div *ngIf="selected === null">
-        <div *ngFor="let prop of propertyList">
+    <div *ngIf="selected === null" class="ajustementBodered">
+        <div *ngFor="let prop of propertyList" class="borderedBottom">
             <div class="container">
                 <img class="alignInfo" src="{{prop.PictureUrl}}">
                 <div class="alignInfo container__text">

@@ -4,16 +4,15 @@
     font-size: 12px;
     font-size: auto;
     text-align: left;   
-    width: 400px;
+    width: 600px;
     margin: -10px auto; 
-    padding: 20px 100px;
+    padding: 20px 20px;
     background-color: rgb(256, 256, 256, 0.7);
     border-radius: 30px;
 }
 
 #inscription > h1 {
     text-align: center;
-    margin: 0px 0px 20px 0px;
 }
 
 mat-label {
@@ -25,10 +24,33 @@ mat-label {
 }
 
 .container {
-    text-align: center;
+    position: relative;
+    left: 50px;
 }
 
 .alignInfo {
     display: inline-block;
-    width: 50%;
+    text-align: left;
+    width: 40%;
+}
+
+.container > div {
+    position: absolute;
+    top: -10px;
+    right: 50px;
+}
+
+.borderedBottom {
+    border-bottom: 1px solid #000;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.borderedBottom:last-child {
+    border-bottom: none;
+}
+
+.borderedBottom:first-child {
+    padding-top: 0px;
+    margin-top: -30px;
 }
