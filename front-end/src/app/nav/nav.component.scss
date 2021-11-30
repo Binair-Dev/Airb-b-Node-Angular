@@ -15,14 +15,33 @@ a {
     width: 130px;
     padding: 10px;
     color: #fff;
-    border-bottom: 1px solid #fff;
     text-decoration: none;
-    font-size: 16px;
-    transition: background-color .3s ease-in-out;
-}
+    font-size: 14px;
+    font-size: 700;
+    text-transform: uppercase;
+    position: relative;
 
-a:hover {
-    background-color: #6768BF;
+    &::after {
+        position: absolute;
+        content: "";
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #6768BF;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s;
+    }
+
+    &:hover {
+        color: #6768BF;
+    }
+
+    &:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
 }
 
 .nav {

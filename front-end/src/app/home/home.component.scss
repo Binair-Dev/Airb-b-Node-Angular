@@ -7,9 +7,13 @@ h2 {
     width: 30%;
 }
 
-#container {
-    display: inline-block;
+.header {
     font-family: 'Lato', 'Helvetica', sans-serif;
+}
+
+#container {
+    font-family: 'Lato', 'Helvetica', sans-serif;
+    display: inline-block;
     font-weight: 500;
     font-size: 12px;
     font-size: auto;
