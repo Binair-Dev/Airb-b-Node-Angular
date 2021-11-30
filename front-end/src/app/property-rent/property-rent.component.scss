@@ -1,12 +1,17 @@
 .container {
+    font-family: 'Lato', 'Helvetica', sans-serif;
     width: 700px;
     margin: 0 auto;
     padding-top: 15px;
     padding-left: 15px;
+    margin-bottom: 20px;
+    position: relative;
     &__text {
       margin-left: 25px;
       display: inline-block;
       text-align: left;
+      position: absolute;
+      top: -5px;
     }
 }
 
@@ -22,6 +27,17 @@ button {
         display: inline-block;
         text-align: center;
       }
+}
+
+.centered__text > h2 {
+    color: #4F68B1;
+    text-transform: capitalize;
+    border-top: 1px solid #777;
+    padding-top: 15px;
+}
+
+.centered__text > h2:first-child {
+    border-top: none;
 }
 
 .popup {

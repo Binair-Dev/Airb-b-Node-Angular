@@ -11,6 +11,14 @@ h2 {
     font-family: 'Lato', 'Helvetica', sans-serif;
 }
 
+.titreDaronne {
+    font-size: 20px; 
+    font-weight: bold; 
+    color: #4F68B1;
+    margin-top: -20px;
+    text-transform: capitalize;
+}
+
 #container {
     font-family: 'Lato', 'Helvetica', sans-serif;
     display: inline-block;
@@ -23,8 +31,9 @@ h2 {
     margin-left: 15px;
     margin-top: 15px;
     padding: 20px 20px;
-    background-color: #fff;
+    background-color: rgb(256, 256, 256, 0.6);
     border-radius: 30px;
+    cursor: pointer;
 }
 
 p {

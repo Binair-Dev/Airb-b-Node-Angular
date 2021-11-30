@@ -15,6 +15,24 @@
     text-align: center;
 }
 
+.addRentForm{
+    text-align: left;
+}
+
+.addRentForm > div:first-child{
+    border-radius: 15px 15px 0px 0px;
+}
+
+.addRentForm > div:nth-child(7){
+    border-radius: 0px 0px 15px 15px;
+}
+
+.formSpacing {
+    padding: 10px 0px 10px 10px;
+    border: 1px solid rgb(214, 214, 214);
+    margin: 0px;
+}
+
 mat-label {
     font-family: arial;
     font-size: 18px;
@@ -53,4 +71,41 @@ mat-label {
 .borderedBottom:first-child {
     padding-top: 0px;
     margin-top: -30px;
+}
+
+input {
+    width: 300px;
+    padding: 5px;
+    font-weight: 300;
+    font-size: 16px;
+    border: none;
+    background: none;
+}
+
+.right-label {
+    float: right;
+    margin-top: 10px;
+    margin-right: 25px;
+    border-left: 1px solid #888;
+}
+
+.formSpacing p {
+    font-size: 16px;
+    display: inline-block;
+}
+
+.URLImages {
+    width: 95%;
+    border-top: 1px solid #888;
+    padding-top: 15px;
+}
+
+.validateButton {
+    padding-top: 15px;
+    text-align: center;
+}
+
+.popup {
+    margin-top: -50px;
+    text-align: center;
 }
