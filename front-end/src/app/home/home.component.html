@@ -1,8 +1,8 @@
-
 <div class="header">
     <h2 *ngIf="currentUser !== null">{{welcomer}} {{currentUser.Prenom}} {{currentUser.Nom}}</h2>
     <h2 *ngIf="currentUser === null">{{welcomer}}</h2>
 </div>
+<app-carousel></app-carousel>
 <div id="container" *ngFor="let prop of properties">
     <a (click)="rentProp(prop._id)">
         <img style="width: 250px; height: 150px;" src="{{prop.PictureUrl}}"><br>
