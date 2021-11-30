@@ -1,12 +1,17 @@
 .container {
+    font-family: 'Lato', 'Helvetica', sans-serif;
     width: 700px;
     margin: 0 auto;
     padding-top: 15px;
     padding-left: 15px;
+    margin-bottom: 20px;
+    position: relative;
     &__text {
       margin-left: 25px;
       display: inline-block;
       text-align: left;
+      position: absolute;
+      top: -5px;
     }
 }
 
@@ -21,9 +26,47 @@ button {
         margin-left: 25px;
         display: inline-block;
         text-align: center;
+        width: 650px;
       }
 }
 
 p {
     text-decoration: underline;
+}
+
+.propertiesLayout{
+    background-color: rgb(256, 256, 256, 0.6);
+    width: 75%;
+    margin: 0 auto;
+    border-radius: 15px;
+    padding: 20px 0px;
+    font-family: 'Lato', 'Helvetica', sans-serif;
+}
+
+.h2Titre {
+    color: #4F68B1;
+    text-transform: capitalize;
+}
+
+p{
+    text-decoration: none;
+}
+
+.borderred {
+    border-top: 1px solid #222;
+    padding-top: 10px;
+}
+
+.gridMember {
+    display: inline-block;
+    width: 30%;
+    padding: 20px 10px;
+}
+
+.buttonChoice{
+    margin-bottom: 15px;
+}
+
+.centerMembersLayout {
+    text-align: center;
 }

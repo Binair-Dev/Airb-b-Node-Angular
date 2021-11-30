@@ -4,83 +4,86 @@
     </div>
     <button (click)="popup = false; authError()">Fermer</button>
 </div>
-<div class="centered" *ngIf="message.length == 0">
-    <button (click)="type = 1" >Voir les membres</button>
-    <button (click)="type = 0">Voir les propriétés</button>
+<div class="centered buttonChoice" *ngIf="message.length == 0">
+    <button mat-raised-button type="submit" (click)="type = 1" >Voir les membres</button>
+    <button mat-raised-button type="submit" (click)="type = 0">Voir les propriétés</button>
 </div>
 <!-- Propriétés -->
-<div *ngIf="type === 0 && message.length == 0">
+<div class="propertiesLayout" *ngIf="type === 0 && message.length == 0">
     <div *ngIf="selected === null">
         <p style="text-align: center; font-size: 16px; color: red;">Voici la liste des propriété(s) en attente !</p>
-        <hr>
-        <p style="text-align: center; text-decoration: underline;">Nombres de résultat(s): {{properties.length}}</p><hr>
+         
+        <p style="text-align: center; text-decoration: underline;">Nombres de résultat(s): {{properties.length}}</p> 
         <div *ngFor="let prop of properties; let i = index">
             <div *ngIf="prop.Attente === true;">
                 <div class="container">
                     <img style="width: 250px; height: 150px;" src="{{prop.PictureUrl}}">
                     <div class="container__text">
-                        <h2>{{prop.Titre}}</h2>
+                        <h2 class="h2Titre">{{prop.Titre}}</h2>
                         <p>Description: {{prop.PetiteDescription}}</p>
                         <p>Prix: {{prop.Prix}}€/Nuit</p>
-                        <button (click)="profile(i)">Plus d'informations</button>
-                        <button (click)="validate(prop)" >Valider</button>
-                        <button (click)="del(prop)">Supprimer</button>
+                        <button mat-raised-button type="submit" (click)="profile(i)">Plus d'informations</button>
+                        <button mat-raised-button type="submit" (click)="validate(prop)" >Valider</button>
+                        <button mat-raised-button type="submit" color="warn" (click)="del(prop)">Supprimer</button>
                     </div>
                 </div>
             </div>
         </div>
-        <hr>
+         
     </div>
     <div *ngIf="selected !== null">
         <p style="text-align: center; font-size: 16px; color: red;">Voici les détails de la propriété en attente !</p>
-        <hr>
+         
         <div class="centered">
             <img style="width: 600px; height: auto;" src="{{selected.PictureUrl}}">
         </div>
         <div class="centered">
             <div class="centered__text">
-                <h2>{{selected.Titre}}</h2>
-                <hr>
-                <p>Description: {{selected.LongueDescription}}</p>
-                <hr>
-                <h2>Specs</h2>
-                <p>Capacité: {{selected.Capacite}} personnes</p>
-                <p>Sale de bain(s): {{selected.SDB}}</p>
-                <p>Toilette(s): {{selected.WC}}</p>
-                <p>Jardin: {{selected.Jardin ? "Oui" : "Non"}}</p>
-                <p>Piscine: {{selected.Piscine ? "Oui" : "Non"}}</p>
-                <p>Machine a laver: {{selected.MachineALaver ? "Oui" : "Non"}}</p>
-                <p>Internet: {{selected.Internet ? "Oui" : "Non"}}</p>
-                <p>Animaux admis: {{selected.AnimauxAdmis ? "Oui" : "Non"}}</p>
-                <p>Assurance activée: {{selected.Assurance ? "Oui" : "Non"}}</p>
-                <hr>
-                <h2>Adresse</h2>
+                <h2 class="h2Titre">{{selected.Titre}}</h2>
+                 
+                <p>Description: <br> {{selected.LongueDescription}}</p>
+                 
+                <h2 class="h2Titre borderred">Specs</h2>
+
+                <div>
+                    <p>Capacité: {{selected.Capacite}} personnes</p>
+                    <p>Sale de bain(s): {{selected.SDB}}</p>
+                    <p>Toilette(s): {{selected.WC}}</p>
+                    <p>Jardin: {{selected.Jardin ? "Oui" : "Non"}}</p>
+                    <p>Piscine: {{selected.Piscine ? "Oui" : "Non"}}</p>
+                    <p>Machine a laver: {{selected.MachineALaver ? "Oui" : "Non"}}</p>
+                    <p>Internet: {{selected.Internet ? "Oui" : "Non"}}</p>
+                    <p>Animaux admis: {{selected.AnimauxAdmis ? "Oui" : "Non"}}</p>
+                    <p>Assurance activée: {{selected.Assurance ? "Oui" : "Non"}}</p>
+                </div>
+                 
+                <h2 class="h2Titre borderred">Adresse</h2>
                 <p>{{selected.Num}} {{selected.Rue}}</p>
                 <p>{{selected.CodePostal}} {{selected.Ville}}</p>
-                <hr>
+                 
                 <p>Prix: {{selected.Prix}}€/Nuit</p>
-                <button (click)="reset(null)">Retour</button>
-                <button (click)="validate(selected)" >Valider</button>
-                <button (click)="del(selected)">Supprimer</button>
+                <button mat-raised-button type="submit" (click)="reset(null)">Retour</button>
+                <button mat-raised-button type="submit" (click)="validate(selected)" >Valider</button>
+                <button mat-raised-button type="submit" color="warn" (click)="del(selected)">Supprimer</button>
             </div>
         </div>
-        <hr>
+         
     </div>
 </div>
 
 <!-- Membres -->
-<div *ngIf="type === 1 && message.length == 0">
-    <div *ngIf="selected === null">
+<div class="propertiesLayout" *ngIf="type === 1 && message.length == 0">
+    <div *ngIf="selected === null" class="centerMembersLayout">
         <p style="text-align: center; font-size: 16px; color: red;">Voici la liste des membre(s) !</p>
-        <hr>
-        <p style="text-align: center; text-decoration: underline;">Nombres de résultat(s): {{members.length}}</p><hr>
-        <div *ngFor="let prop of members;" class="container">
-            <div class="centered">
+         
+        <p style="text-align: center; text-decoration: underline;">Nombres de résultat(s): {{members.length}}</p> 
+        <div *ngFor="let prop of members;" class="containerMember gridMember">
+            <div>
                 <p>{{prop.Nom}} {{prop.Prenom}}</p>
-                <button *ngIf="prop.isAdmin && (prop.Email !== currentUser.Email)" (click)="switchAdmin(prop)">Révoquer Administrateur</button>
-                <button *ngIf="!prop.isAdmin" (click)="switchAdmin(prop)" >Passer Administrateur</button>
-                <button *ngIf="prop.Email !== currentUser.Email" (click)="delUser(prop)">Supprimer</button>
-                <hr>
+                <button mat-raised-button type="submit" color="warn" *ngIf="prop.isAdmin && (prop.Email !== currentUser.Email)" (click)="switchAdmin(prop)">Révoquer Administrateur</button>
+                <button mat-raised-button type="submit" *ngIf="!prop.isAdmin" (click)="switchAdmin(prop)" >Passer Administrateur</button>
+                <button mat-raised-button type="submit" color="warn" *ngIf="prop.Email !== currentUser.Email" (click)="delUser(prop)">Supprimer</button>
+                 
             </div>
         </div>
     </div>
