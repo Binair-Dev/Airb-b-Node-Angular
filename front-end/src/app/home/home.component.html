@@ -1,5 +1,5 @@
 <div class="header">
-    <h2 *ngIf="currentUser !== null">{{welcomer}} {{currentUser.Prenom}} {{currentUser.Nom}}</h2>
+    <h2 *ngIf="currentUser !== null">{{welcomer}}, {{currentUser.Prenom}}</h2>
     <h2 *ngIf="currentUser === null">{{welcomer}}</h2>
 </div>
 <app-carousel></app-carousel>

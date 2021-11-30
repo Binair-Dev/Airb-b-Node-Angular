@@ -11,5 +11,5 @@ module.exports = app => {
     router.delete("/:id", contract.delete);
     router.delete("/", contract.deleteAll);
   
-    app.use('/api/contract', authenticateToken, router);
+    app.use('/api/contract', router);
   };
